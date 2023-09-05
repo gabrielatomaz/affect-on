@@ -1,8 +1,8 @@
 import { UserRepository } from '../repositories/repositories';
-import { User } from '../models/models'
+import { User, UserLogin } from '../models/models'
 
 class UserService {
-    async getUserCredentials(user: User): Promise<User> {
+    async getUserCredentials(user: UserLogin): Promise<User> {
         const { email, password }: User = user;
 
         const { rows: [userFound] } = await UserRepository

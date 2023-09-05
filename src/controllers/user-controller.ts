@@ -1,13 +1,14 @@
-import { Response, Request, response } from 'express';
+import { Response, Request } from 'express';
 import { UserService } from '../services/services';
-import { User } from '../models/models'
+import { User, UserLogin } from '../models/models';
+import { Post, Route, Body, Tags } from "tsoa";
 
+@Route("usuario")
+@Tags("Usuários")
 class UserController {
-    login(requet: Request, response: Response): void {
-        const user: User = requet.body as User;
-        UserService
-            .getUserCredentials(user)
-            .then((foundUser: User) => response.json(foundUser));
+    @Post("/login")
+    login(@Body() user: UserLogin): Promise<User> {
+        return UserService.getUserCredentials(user);
     }
 
     findByEmail(requet: Request, response: Response): void {
