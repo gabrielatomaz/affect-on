@@ -37,8 +37,8 @@ class UserService {
         throw new Error('Method not implemented.');
     }
     
-    async deleteBy(email: string): Promise<User> {
-        throw new Error('Method not implemented.');
+    async deleteBy(email: string): Promise<void> {
+        UserRepository.delete(email);
     }
 
     async create(user: User): Promise<void> {

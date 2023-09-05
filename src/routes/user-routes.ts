@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import router from './router';
 import { Router } from 'express';
 import { User, UserLogin } from '../models/models';
-import { error } from 'console';
+import HttpStatusMatcher from '../utils/http-status-matcher';
 
 class UserRoutes {
     buildRoutes(): Router {
@@ -29,38 +29,46 @@ class UserRoutes {
     private async loginRoute(request: Request, response: Response): Promise<void> {
         const user: UserLogin = request.body as User;
         const loggedUser: User = await UserController.login(user);
-        response.json(loggedUser);
+
+        const responseStatus = HttpStatusMatcher.isOkOrNotFound(loggedUser);
+        response.status(responseStatus).json(loggedUser);
     }
 
     private async findAllRoute(request: Request, response: Response): Promise<void> {
         const usersFound: User[] = await UserController.findAll();
-        response.json(usersFound);
+
+        const responseStatus = HttpStatusMatcher.isOkOrNotFound(usersFound);
+        response.status(responseStatus).json(usersFound);
     }
 
     private async findByEmailRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const userFound: User = await UserController.findByEmail(email);
-        response.json(userFound);
+
+        const responseStatus = HttpStatusMatcher.isOkOrNotFound(userFound);
+        response.status(responseStatus).json(userFound);
     }
 
     private async findByRoute(request: Request, response: Response): Promise<void> {
         const user: User = request.query as User;
         const usersFound: User[] = await UserController.findBy(user);
-        response.json(usersFound);
+
+        const responseStatus = HttpStatusMatcher.isOkOrNotFound(usersFound);
+        response.status(responseStatus).json(usersFound);
     }
 
     private async createRoute(request: Request, response: Response): Promise<void> {
         const user: User = request.body as User;
         UserController.create(user)
-            .then(() => response.status(201))
-            .catch(() => response.status(400));
+            .then(() => response.status(201).send())
+            .catch(() => response.status(400).send())
     }
 
     private async deleteRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         UserController.deleteBy(email)
-            .then(() => response.status(200))
-            .catch(() => response.status(400));
+            .then(() => response.status(200).send())
+            .catch(() => response.status(400).send());
     }
 
     private async updateRoute(request: Request, response: Response): Promise<void> {

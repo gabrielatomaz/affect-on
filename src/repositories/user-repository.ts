@@ -3,7 +3,7 @@ import databaseConnection from "../configs/database-connection";
 import { User } from '../models/models';
 
 class UserRepository {
-    insert(user: User): Promise<QueryResult> {
+    async insert(user: User): Promise<QueryResult> {
         const { email, phone, name, password } = user;
         const select = `
             INSERT INTO 
@@ -11,6 +11,17 @@ class UserRepository {
             VALUES($1, $2, $3, $4);
         `;
         const values = [email, name, password, phone];
+
+        return databaseConnection.pool.query(select, values);
+    }
+
+    async delete(email: string): Promise<QueryResult> {
+        const select = `
+            DELETE FROM
+                usuario
+            WHERE email = $1;
+        `;
+        const values = [email];
 
         return databaseConnection.pool.query(select, values);
     }

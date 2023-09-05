@@ -43,8 +43,8 @@ class UserController {
     }
 
     @Delete('/email/:email')
-    deleteBy(@Path("email") email: string): Promise<User> {
-        return UserService.deleteBy(email);
+    async deleteBy(@Path("email") email: string): Promise<void> {
+        UserService.deleteBy(email);
     }
 
     @Patch('/email/:email')
