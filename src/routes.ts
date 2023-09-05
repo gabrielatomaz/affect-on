@@ -4,7 +4,6 @@ import { UserController } from './controllers/controllers';
 
 const routes = express.Router();
 
-
 var jsonParser = bodyParser.json()
 
 routes.post('/login', jsonParser, UserController.login);

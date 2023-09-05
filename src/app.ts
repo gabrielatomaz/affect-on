@@ -1,14 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './routes';
-//import databaseConnection from './configs/database-connection';
+import { UserRoutes } from './routes/routes'
 
 const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(routes)
+app.use(UserRoutes);
 app.listen(port);
-
-// databaseConnection.connectToDatabase();
-
