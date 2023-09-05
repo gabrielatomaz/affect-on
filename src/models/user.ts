@@ -1,5 +1,4 @@
-"use strict";
-interface User {
+export default interface User {
     name?: string,
     email?: string,
     password?: string,

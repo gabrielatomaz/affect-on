@@ -1,4 +1,5 @@
 import { UserRepository } from '../repositories/repositories';
+import { User } from '../models/models'
 
 class UserService {
     async findUser(user: User): Promise<User> {

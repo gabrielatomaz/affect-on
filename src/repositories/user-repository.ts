@@ -1,5 +1,6 @@
 import { QueryResult } from "pg";
 import databaseConnection from "../configs/database-connection";
+import { User } from '../models/models'
 
 class UserRepository {
     async findUser(user: User): Promise<QueryResult> {
