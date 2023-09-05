@@ -28,6 +28,22 @@ class UserService {
         
         return users;
     }
+
+    async upateAllFieldsBy(email: string, user: User): Promise<User> {
+        throw new Error('Method not implemented.');
+    }
+
+    async updateBy(email: string, user: User): Promise<User> {
+        throw new Error('Method not implemented.');
+    }
+    
+    async deleteBy(email: string): Promise<User> {
+        throw new Error('Method not implemented.');
+    }
+
+    async create(user: User): Promise<void> {
+        UserRepository.insert(user);
+    }
 }
 
 export default new UserService();

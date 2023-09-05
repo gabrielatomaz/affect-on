@@ -1,5 +1,10 @@
 import UserRoutes from './user-routes'
+import { Express } from 'express'
 
-export {
-    UserRoutes,
+class Routes {
+    constructor(app: Express) {
+        app.use(UserRoutes.buildRoutes())
+    }
 }
+
+export default Routes;

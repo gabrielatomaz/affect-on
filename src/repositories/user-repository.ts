@@ -3,7 +3,19 @@ import databaseConnection from "../configs/database-connection";
 import { User } from '../models/models';
 
 class UserRepository {
-    async findUserByEmailAndPassword(email?: string, password?: string): Promise<QueryResult> {
+    insert(user: User): Promise<QueryResult> {
+        const { email, phone, name, password } = user;
+        const select = `
+            INSERT INTO 
+                usuario(email, nome, senha, telefone)
+            VALUES($1, $2, $3, $4);
+        `;
+        const values = [email, name, password, phone];
+
+        return databaseConnection.pool.query(select, values);
+    }
+
+    findUserByEmailAndPassword(email?: string, password?: string): Promise<QueryResult> {
         const select = `
             SELECT
                 * 
@@ -17,7 +29,7 @@ class UserRepository {
         return databaseConnection.pool.query(select, values);
     }
 
-    async findAll(): Promise<QueryResult> {
+    findAll(): Promise<QueryResult> {
         const select = `
             SELECT
                 * 
@@ -27,7 +39,7 @@ class UserRepository {
         return databaseConnection.pool.query(select);
     }
 
-    async findByEmail(email?: string): Promise<QueryResult> {
+    findByEmail(email?: string): Promise<QueryResult> {
         const select = `
             SELECT
                 * 
@@ -40,7 +52,7 @@ class UserRepository {
         return databaseConnection.pool.query(select, values);
     }
 
-    async findBy(user: User): Promise<QueryResult> {
+    findBy(user: User): Promise<QueryResult> {
         const { name, email, password, phone }: User = user;
         const select = `
             SELECT
@@ -54,6 +66,7 @@ class UserRepository {
                 OR telefone = $4
             )
         `;
+
         const values = [email, name, password, phone];
 
         return databaseConnection.pool.query(select, values);

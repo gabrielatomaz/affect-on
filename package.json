@@ -1,7 +1,6 @@
 {
-  "name": "affect-on-api",
+  "name": "AffectOn API",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node build/app.js",
@@ -20,7 +19,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Gabriela Ribeiro, Joana Mespaque & Louise Queiroz",
   "devDependencies": {
     "@types/cors": "^2.8.14",
     "@types/dotenv": "^8.2.0",

@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import swaggerUi from "swagger-ui-express";
-import { UserRoutes } from './routes/routes'
+import Routes from './routes/routes'
 
 dotenv.config();
 
-const app = express();
+const app: Express = express();
 const port = 3000;
 
 app.use(cors());
@@ -24,4 +24,4 @@ app.use(
   })
 );
 
-app.use(UserRoutes);
+new Routes(app);

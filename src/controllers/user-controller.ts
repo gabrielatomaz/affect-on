@@ -1,38 +1,60 @@
-import { Response, Request } from 'express';
 import { UserService } from '../services/services';
 import { User, UserLogin } from '../models/models';
-import { Post, Route, Body, Tags } from "tsoa";
+import {
+    Post,
+    Route,
+    Body,
+    Tags,
+    Get,
+    Query,
+    Queries,
+    Delete,
+    Patch,
+    Put, 
+    Path
+} from "tsoa";
 
-@Route("usuario")
-@Tags("Usuários")
+@Route('usuario')
+@Tags('Usuários')
 class UserController {
-    @Post("/login")
+    @Post('/login')
     login(@Body() user: UserLogin): Promise<User> {
         return UserService.getUserCredentials(user);
     }
 
-    findByEmail(requet: Request, response: Response): void {
-        const { query } = requet;
-        const { email }: User = query as User;
-
-        UserService
-            .findByEmail(email)
-            .then((userFound: User) => response.json(userFound));
+    @Post()
+    async create(@Body() user: User): Promise<void> {
+        UserService.create(user);
     }
 
-    findAll(requet: Request, response: Response): void {
-        UserService
-            .findAll()
-            .then((users: User[]) => response.json(users))
+    @Get('/email/:email')
+    findByEmail(@Path('email') email: string): Promise<User> {
+        return UserService.findByEmail(email);
     }
 
-    findBy(requet: Request, response: Response): void {
-        const { query } = requet;
-        const user: User = query as User;
+    @Get('/todos')
+    findAll(): Promise<User[]> {
+        return UserService.findAll();
+    }
 
-        UserService
-            .findBy(user)
-            .then((userFound: User[]) => response.json(userFound));
+    @Get()
+    findBy(@Queries() user: User): Promise<User[]> {
+        return UserService.findBy(user);
+    }
+
+    @Delete('/email/:email')
+    deleteBy(@Path("email") email: string): Promise<User> {
+        return UserService.deleteBy(email);
+    }
+
+    @Patch('/email/:email')
+    updateBy(@Path("email") email: string, @Body() user: User): Promise<User> {
+        return UserService.updateBy(email, user);
+    }
+
+    @Put('/email/:email')
+    upateAllFieldsBy(@Path("email") email: string, @Body() user: User): Promise<User> {
+        return UserService.upateAllFieldsBy(email, user);
     }
 }
 
