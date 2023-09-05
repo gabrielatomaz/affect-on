@@ -58,8 +58,9 @@ class UserRoutes {
 
     private async deleteRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const persistedUser: User = await UserController.deleteBy(email);
-        response.json(persistedUser);
+        UserController.deleteBy(email)
+            .then(() => response.status(200))
+            .catch(() => response.status(400));
     }
 
     private async updateRoute(request: Request, response: Response): Promise<void> {
