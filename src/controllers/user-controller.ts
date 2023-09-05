@@ -3,15 +3,11 @@ import { UserService } from '../services/services';
 import { User } from '../models/models'
 
 class UserController {
-    async getUser(requet: Request, respone: Response) {
-        const user: User = {
-            email: 'usuario1@example.com',
-            password: 'senha1',
-        };
-
+    async login(requet: Request, respone: Response) {
+        const user: User = requet.body as User;
         UserService
             .findUser(user)
-            .then((foundUser: User) => respone.send(foundUser));
+            .then((foundUser: User) => respone.json(foundUser));
     }
 }
 

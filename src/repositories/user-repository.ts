@@ -3,8 +3,7 @@ import databaseConnection from "../configs/database-connection";
 import { User } from '../models/models'
 
 class UserRepository {
-    async findUser(user: User): Promise<QueryResult> {
-        const { email, password } = user;
+    async findUserByEmailAndPassword(email?: string, password?: string): Promise<QueryResult> {
         const select = `
             SELECT
                 * 
