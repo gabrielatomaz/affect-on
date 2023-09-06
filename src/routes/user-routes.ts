@@ -74,15 +74,17 @@ class UserRoutes {
     private async updateRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const user: User = request.body as User;
-        const persistedUser: User = await UserController.updateBy(email, user);
-        response.json(persistedUser);
+        UserController.updateBy(email, user)
+            .then(() => response.status(200).send())
+            .catch(() => response.status(400).send());
     }
 
     private async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const user: User = request.body as User;
-        const persistedUser: User = await UserController.upateAllFieldsBy(email, user);
-        response.json(persistedUser);
+        UserController.upateAllFieldsBy(email, user)
+            .then(() => response.status(200).send())
+            .catch(() => response.status(400).send());
     }
 }
 

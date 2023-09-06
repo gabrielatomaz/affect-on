@@ -48,13 +48,13 @@ class UserController {
     }
 
     @Patch('/email/:email')
-    updateBy(@Path("email") email: string, @Body() user: User): Promise<User> {
-        return UserService.updateBy(email, user);
+    async updateBy(@Path("email") email: string, @Body() user: User): Promise<void> {
+        UserService.updateBy(email, user);
     }
 
     @Put('/email/:email')
-    upateAllFieldsBy(@Path("email") email: string, @Body() user: User): Promise<User> {
-        return UserService.upateAllFieldsBy(email, user);
+    async upateAllFieldsBy(@Path("email") email: string, @Body() user: User): Promise<void> {
+        UserService.upateAllFieldsBy(email, user);
     }
 }
 

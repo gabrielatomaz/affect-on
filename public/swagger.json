@@ -217,15 +217,8 @@
 			"patch": {
 				"operationId": "UpdateBy",
 				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
+					"204": {
+						"description": "No content"
 					}
 				},
 				"tags": [
@@ -256,15 +249,8 @@
 			"put": {
 				"operationId": "UpateAllFieldsBy",
 				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
+					"204": {
+						"description": "No content"
 					}
 				},
 				"tags": [
