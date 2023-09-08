@@ -9,6 +9,7 @@ import ComplaintEntity from './complaint-entity'
 import AccessGroupEntity from './access-group-entity'
 import AccessGroupPermissionTypeEntity from './acess-group-permission-type-entity'
 import HistoryEntity from './history-entity'
+import HostingEntity from './hosting-entity'
 
 export {
     UserEntity,
@@ -22,4 +23,5 @@ export {
     AccessGroupEntity,
     AccessGroupPermissionTypeEntity,
     HistoryEntity,
+    HostingEntity,
 }

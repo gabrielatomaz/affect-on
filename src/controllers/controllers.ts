@@ -9,6 +9,7 @@ import complaintController from "./complaint-controller";
 import accessGroupController from "./access-group-controller";
 import accessGroupPermissionTypeController from "./access-group-permission-type-controller";
 import historyController from "./history-controller";
+import hostingController from "./hosting-controller";
 
 export {
     userController,
@@ -22,5 +23,6 @@ export {
     accessGroupController,
     accessGroupPermissionTypeController,
     historyController,
+    hostingController,
 }
 

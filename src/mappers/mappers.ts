@@ -9,6 +9,7 @@ import complaintMapper from "./complaint-mapper"
 import accessGroupMapper from "./access-group-mapper"
 import accessGroupPermissionTypeMapper from "./access-group-permission-type-mapper"
 import historyMapper from "./history-mapper"
+import hostingMapper from "./hosting-mapper"
 
 export {
     userMapper,
@@ -22,4 +23,5 @@ export {
     accessGroupMapper,
     accessGroupPermissionTypeMapper,
     historyMapper,
+    hostingMapper,
 }

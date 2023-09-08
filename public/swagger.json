@@ -210,6 +210,31 @@
 				},
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Hosting": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"hostType": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"cnpj": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -2094,6 +2119,177 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/History"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/local-de-hospedagem/id/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Hosting"
+							}
+						}
+					}
+				}
+			},
+			"patch": {
+				"operationId": "UpdateAllFields",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Hosting"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Hosting"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/local-de-hospedagem/todos": {
+			"get": {
+				"operationId": "FindAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Hosting"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/local-de-hospedagem": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Hosting"
 							}
 						}
 					}
