@@ -1,9 +1,17 @@
 import UserRoutes from './user-routes'
+import PreferenceRoutes from './preference-routes';
+
 import { Express } from 'express'
 
 class Routes {
     constructor(app: Express) {
-        app.use(UserRoutes.buildRoutes())
+        const routes = [
+            UserRoutes,
+            PreferenceRoutes,
+        ];
+
+        routes
+            .forEach(routes => app.use(routes.buildRoutes()));
     }
 }
 

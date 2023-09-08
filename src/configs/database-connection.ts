@@ -12,7 +12,7 @@ class DatabaseConnection {
         database: 'AffectOn',
         password: 'mTli3sWyw4zf',
         port: parseInt('5432'),
-        ssl: true,
+        ssl: true
     });
 
     async connectToDatabase() {

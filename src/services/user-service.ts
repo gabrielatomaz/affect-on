@@ -4,7 +4,7 @@ import { UserMapper } from '../mappers/mappers'
 
 class UserService {
     async getUserCredentials(user: UserLogin): Promise<User> {
-        const { email, password }: User = user;
+        const { email, password }: UserLogin = user;
 
         const { rows: [userFound] } = await UserRepository
             .findUserByEmailAndPassword(email, password);

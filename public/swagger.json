@@ -35,6 +35,26 @@
 				},
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Preference": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"cpf": {
+						"type": "string"
+					},
+					"response": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"cpf"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -302,6 +322,31 @@
 				],
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/preferencia": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Preferências"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Preference"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
