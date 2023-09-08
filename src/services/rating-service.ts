@@ -4,21 +4,7 @@ import { RatingMapper } from "../mappers/mappers"
 
 class RatingService {
     async updateAllFields(id: number, rating: Rating): Promise<void> {
-        const { cpf, score, idAccommodation, comment } = rating;
-        const {
-            cpf: cpfFound,
-            score: scoreFound,
-            idAccommodation: idAccommodationFound,
-            comment: commentFound,
-        }: Rating = await this.findById(id);
-        const ratingToBeUpdated: Rating = {
-            cpf: cpf ? cpf : cpfFound,
-            score: score ? score : scoreFound,
-            idAccommodation: idAccommodation ? idAccommodation : idAccommodationFound,
-            comment: comment ? comment : commentFound,
-        };
-
-        RatingRepository.update(id, ratingToBeUpdated);
+        RatingRepository.update(id, rating);
     }
 
     async findAll(): Promise<Rating[]> {
@@ -37,7 +23,21 @@ class RatingService {
     }
 
     async update(id: number, rating: Rating): Promise<void> {
-        RatingRepository.update(id, rating);
+        const { cpf, score, idAccommodation, comment } = rating;
+        const {
+            cpf: cpfFound,
+            score: scoreFound,
+            idAccommodation: idAccommodationFound,
+            comment: commentFound,
+        }: Rating = await this.findById(id);
+        const ratingToBeUpdated: Rating = {
+            cpf: cpf ? cpf : cpfFound,
+            score: score ? score : scoreFound,
+            idAccommodation: idAccommodation ? idAccommodation : idAccommodationFound,
+            comment: comment ? comment : commentFound,
+        };
+
+        RatingRepository.update(id, ratingToBeUpdated);
     }
 
     async create(rating: Rating): Promise<void> {

@@ -4,14 +4,7 @@ import { PreferenceMapper } from "../mappers/mappers"
 
 class PreferenceService {
         async updateAllFields(id: number, preference: Preference): Promise<void> {
-            const { cpf, response } = preference;
-            const { cpf: cpfFound, response: responseFound }: Preference = await this.findById(id);
-            const preferenceToBeUpdated: Preference = {
-                cpf: cpf ? cpf : cpfFound,
-                response: response ? response : responseFound,
-            };
-
-            PreferenceRepository.update(id, preferenceToBeUpdated);
+            PreferenceRepository.update(id, preference);
         }
 
         async findAll(): Promise<Preference[]> {
@@ -30,7 +23,13 @@ class PreferenceService {
         }
 
         async update(id: number, preference: Preference): Promise<void> {
-            PreferenceRepository.update(id, preference);
+            const { cpf, response } = preference;
+            const { cpf: cpfFound, response: responseFound }: Preference = await this.findById(id);
+            const preferenceToBeUpdated: Preference = {
+                cpf: cpf ? cpf : cpfFound,
+                response: response ? response : responseFound,
+            };
+            PreferenceRepository.update(id, preferenceToBeUpdated);
         }
 
         async create(preference: Preference): Promise<void> {
