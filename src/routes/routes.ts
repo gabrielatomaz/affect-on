@@ -4,6 +4,7 @@ import ratingRoutes from './rating-routes';
 import categoryRoutes from './category-routes';
 import clientRoutes from './client-routes';
 import complaintRoutes from './complaint-routes';
+import accessGroupRoutes from './access-group-routes';
 
 import { Express } from 'express'
 
@@ -16,6 +17,7 @@ class Routes {
             categoryRoutes,
             clientRoutes,
             complaintRoutes,
+            accessGroupRoutes,
         ];
 
         routes

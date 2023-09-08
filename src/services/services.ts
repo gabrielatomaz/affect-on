@@ -6,6 +6,7 @@ import clientService from "./client-service";
 import hostService from "./host-service";
 import comfortService from "./comfort-service";
 import complaintService from "./complaint-service";
+import accessGroupService from "./access-group-service";
 
 export {
     userService,
@@ -16,5 +17,6 @@ export {
     hostService,
     comfortService,
     complaintService,
+    accessGroupService,
 }
 

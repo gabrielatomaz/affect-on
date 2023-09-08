@@ -6,6 +6,7 @@ import ClientEntity from './client-entity'
 import HostEntity from './host-entity'
 import ComfortEntity from './comfort-entity'
 import ComplaintEntity from './complaint-entity'
+import AccessGroupEntity from './access-group-entity'
 
 export {
     UserEntity,
@@ -16,4 +17,5 @@ export {
     HostEntity,
     ComfortEntity,
     ComplaintEntity,
+    AccessGroupEntity,
 }

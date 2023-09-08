@@ -6,6 +6,7 @@ import clientRepository from "./client-repository";
 import hostRepository from "./host-repository";
 import comfortRepository from "./comfort-repository";
 import complaintRepository from "./complaint-repository";
+import accessGroupRepository from "./access-group-repository";
 
 export {
     userRepository,
@@ -16,5 +17,6 @@ export {
     hostRepository,
     comfortRepository,
     complaintRepository,
+    accessGroupRepository,
 }
 

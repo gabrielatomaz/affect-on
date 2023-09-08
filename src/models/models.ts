@@ -7,6 +7,7 @@ import Client from './client-model'
 import Host from './host-model'
 import Comfort from './comfort-model'
 import Complaint from './complaint-model'
+import AccessGroup from './access-group-model'
 
 export {
     User,
@@ -18,4 +19,5 @@ export {
     Host,
     Comfort,
     Complaint,
+    AccessGroup,
 }
