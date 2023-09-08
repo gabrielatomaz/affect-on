@@ -4,6 +4,7 @@ import ratingService from './rating-service'
 import categoryService from "./category-service";
 import clientService from "./client-service";
 import hostService from "./host-service";
+import comfortService from "./comfort-service";
 
 export {
     userService,
@@ -12,5 +13,6 @@ export {
     categoryService,
     clientService,
     hostService,
+    comfortService,
 }
 
