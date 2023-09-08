@@ -2,8 +2,8 @@ import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
 import { Client } from "../models/models";
-import { ClientController } from "../controllers/controllers";
-import { HttpStatusMatcher } from "../utils/utils";
+import { clientController } from "../controllers/controllers";
+import { httpStatusMatcher } from "../utils/utils";
 
 class ClientRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class ClientRoutes {
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const client: Client = request.body as Client;
-        ClientController.updateAllFields(email, client)
+        clientController.updateAllFields(email, client)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
@@ -33,34 +33,34 @@ class ClientRoutes {
     async updateRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const client: Client = request.body as Client;
-        ClientController.update(email, client)
+        clientController.update(email, client)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const clientFound: Client = await ClientController.findById(email);
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(clientFound);
+        const clientFound: Client = await clientController.findById(email);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(clientFound);
         response.status(responseHttpStatus).json(clientFound);
     }
 
     async deleteRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        ClientController.delete(email)
+        clientController.delete(email)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const clientsFound: Client[] = await ClientController.findAll();
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(clientsFound);
+        const clientsFound: Client[] = await clientController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(clientsFound);
         response.status(responseHttpStatus).json(clientsFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
         const client: Client = request.body as Client;
-        ClientController.create(client)
+        clientController.create(client)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }

@@ -1,18 +1,18 @@
-import UserRoutes from './user-routes'
-import PreferenceRoutes from './preference-routes';
-import RatingRoutes from './rating-routes';
-import CategoryRoutes from './category-routes';
-import ClientRoutes from './client-routes';
+import userRoutes from './user-routes'
+import preferenceRoutes from './preference-routes';
+import ratingRoutes from './rating-routes';
+import categoryRoutes from './category-routes';
+import clientRoutes from './client-routes';
 import { Express } from 'express'
 
 class Routes {
     constructor(app: Express) {
         const routes = [
-            UserRoutes,
-            PreferenceRoutes,
-            RatingRoutes,
-            CategoryRoutes,
-            ClientRoutes,
+            userRoutes,
+            preferenceRoutes,
+            ratingRoutes,
+            categoryRoutes,
+            clientRoutes,
         ];
 
         routes

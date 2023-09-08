@@ -1,16 +1,16 @@
-import UserService from "./user-service";
-import PreferenceService from "./preference-service";
-import RatingService from './rating-service'
-import CategoryService from "./category-service";
-import ClientService from "./client-service";
-import HostService from "./host-service";
+import userService from "./user-service";
+import preferenceService from "./preference-service";
+import ratingService from './rating-service'
+import categoryService from "./category-service";
+import clientService from "./client-service";
+import hostService from "./host-service";
 
 export {
-    UserService,
-    PreferenceService,
-    RatingService,
-    CategoryService,
-    ClientService,
-    HostService,
+    userService,
+    preferenceService,
+    ratingService,
+    categoryService,
+    clientService,
+    hostService,
 }
 

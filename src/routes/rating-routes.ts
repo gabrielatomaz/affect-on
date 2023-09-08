@@ -2,8 +2,8 @@ import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
 import { Rating } from "../models/models";
-import { RatingController } from "../controllers/controllers";
-import { HttpStatusMatcher } from "../utils/utils";
+import { ratingController } from "../controllers/controllers";
+import { httpStatusMatcher } from "../utils/utils";
 
 class RatingRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class RatingRoutes {
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const rating: Rating = request.body as Rating;
-        RatingController.updateAllFields(id, rating)
+        ratingController.updateAllFields(id, rating)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
@@ -33,34 +33,34 @@ class RatingRoutes {
     async updateRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const rating: Rating = request.body as Rating;
-        RatingController.update(id, rating)
+        ratingController.update(id, rating)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
-        const ratingFound: Rating = await RatingController.findById(id);
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(ratingFound);
+        const ratingFound: Rating = await ratingController.findById(id);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(ratingFound);
         response.status(responseHttpStatus).json(ratingFound);
     }
 
     async deleteRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
-        RatingController.delete(id)
+        ratingController.delete(id)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const ratingsFound: Rating[] = await RatingController.findAll();
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(ratingsFound);
+        const ratingsFound: Rating[] = await ratingController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(ratingsFound);
         response.status(responseHttpStatus).json(ratingsFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
         const rating: Rating = request.body as Rating;
-        RatingController.create(rating)
+        ratingController.create(rating)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }

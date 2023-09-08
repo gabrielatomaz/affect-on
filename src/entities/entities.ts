@@ -4,6 +4,7 @@ import RatingEntity from './rating-entity'
 import CategoryEntity from './category-entity'
 import ClientEntity from './client-entity'
 import HostEntity from './host-entity'
+import ComfortEntity from './comfort-entity'
 
 export {
     UserEntity,
@@ -12,4 +13,5 @@ export {
     CategoryEntity,
     ClientEntity,
     HostEntity,
+    ComfortEntity,
 }

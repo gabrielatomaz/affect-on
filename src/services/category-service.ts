@@ -1,25 +1,25 @@
 import { Category } from "../models/models";
-import { CategoryRepository } from "../repositories/repositories";
-import { CategoryMapper } from "../mappers/mappers"
+import { categoryRepository } from "../repositories/repositories";
+import { categoryMapper } from "../mappers/mappers"
 
 class CategoryService {
     async updateAllFields(id: number, category: Category): Promise<void> {
-        CategoryRepository.update(id, category);
+        categoryRepository.update(id, category);
     }
 
     async findAll(): Promise<Category[]> {
-        const { rows: categorys } = await CategoryRepository.findAll();
-        return categorys.map(preferece => CategoryMapper.map(preferece));
+        const { rows: categorys } = await categoryRepository.findAll();
+        return categorys.map(preferece => categoryMapper.map(preferece));
     }
 
     async delete(id: number): Promise<void> {
-        CategoryRepository.delete(id);
+        categoryRepository.delete(id);
     }
 
     async findById(id: number): Promise<Category> {
-        const { rows: [categoryFound] } = await CategoryRepository.findById(id);
+        const { rows: [categoryFound] } = await categoryRepository.findById(id);
 
-        return CategoryMapper.map(categoryFound);
+        return categoryMapper.map(categoryFound);
     }
 
     async update(id: number, category: Category): Promise<void> {
@@ -34,11 +34,11 @@ class CategoryService {
             keyWord: keyWord ? keyWord : keyWordFound,
             name: name ? name : nameFound,
         };
-        CategoryRepository.update(id, categoryToBeUpdated);
+        categoryRepository.update(id, categoryToBeUpdated);
     }
 
     async create(category: Category): Promise<void> {
-        CategoryRepository.create(category);
+        categoryRepository.create(category);
     }
 
 }

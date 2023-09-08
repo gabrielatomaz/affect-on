@@ -1,10 +1,10 @@
-import { UserController } from '../controllers/controllers'
+import { userController } from '../controllers/controllers'
 import { Response, Request } from 'express';
 import bodyParser from 'body-parser';
 import router from './router';
 import { Router } from 'express';
 import { User, UserLogin } from '../models/models';
-import { HttpStatusMatcher } from '../utils/utils';
+import { httpStatusMatcher } from '../utils/utils';
 
 class UserRoutes {
     buildRoutes(): Router {
@@ -28,45 +28,45 @@ class UserRoutes {
 
     private async loginRoute(request: Request, response: Response): Promise<void> {
         const user: UserLogin = request.body as User;
-        const loggedUser: User = await UserController.login(user);
+        const loggedUser: User = await userController.login(user);
 
-        const responseStatus = HttpStatusMatcher.isOkOrNotFound(loggedUser);
+        const responseStatus = httpStatusMatcher.isOkOrNotFound(loggedUser);
         response.status(responseStatus).json(loggedUser);
     }
 
     private async findAllRoute(request: Request, response: Response): Promise<void> {
-        const usersFound: User[] = await UserController.findAll();
+        const usersFound: User[] = await userController.findAll();
 
-        const responseStatus = HttpStatusMatcher.isOkOrNotFound(usersFound);
+        const responseStatus = httpStatusMatcher.isOkOrNotFound(usersFound);
         response.status(responseStatus).json(usersFound);
     }
 
     private async findByEmailRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const userFound: User = await UserController.findByEmail(email);
+        const userFound: User = await userController.findByEmail(email);
 
-        const responseStatus = HttpStatusMatcher.isOkOrNotFound(userFound);
+        const responseStatus = httpStatusMatcher.isOkOrNotFound(userFound);
         response.status(responseStatus).json(userFound);
     }
 
     private async findByRoute(request: Request, response: Response): Promise<void> {
         const user: User = request.query as User;
-        const usersFound: User[] = await UserController.findBy(user);
+        const usersFound: User[] = await userController.findBy(user);
 
-        const responseStatus = HttpStatusMatcher.isOkOrNotFound(usersFound);
+        const responseStatus = httpStatusMatcher.isOkOrNotFound(usersFound);
         response.status(responseStatus).json(usersFound);
     }
 
     private async createRoute(request: Request, response: Response): Promise<void> {
         const user: User = request.body as User;
-        UserController.create(user)
+        userController.create(user)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send())
     }
 
     private async deleteRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        UserController.deleteBy(email)
+        userController.deleteBy(email)
             .then(() => response.status(200).send())
             .catch(() => response.status(400).send());
     }
@@ -74,7 +74,7 @@ class UserRoutes {
     private async updateRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const user: User = request.body as User;
-        UserController.updateBy(email, user)
+        userController.updateBy(email, user)
             .then(() => response.status(200).send())
             .catch(() => response.status(400).send());
     }
@@ -82,7 +82,7 @@ class UserRoutes {
     private async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const user: User = request.body as User;
-        UserController.upateAllFieldsBy(email, user)
+        userController.upateAllFieldsBy(email, user)
             .then(() => response.status(200).send())
             .catch(() => response.status(400).send());
     }

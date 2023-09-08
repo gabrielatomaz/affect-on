@@ -1,4 +1,4 @@
-import { UserService } from '../services/services';
+import { userService } from '../services/services';
 import { User, UserLogin } from '../models/models';
 import {
     Post,
@@ -19,42 +19,42 @@ import {
 class UserController {
     @Post('/login')
     login(@Body() user: UserLogin): Promise<User> {
-        return UserService.getUserCredentials(user);
+        return userService.getUserCredentials(user);
     }
 
     @Post()
     async create(@Body() user: User): Promise<void> {
-        UserService.create(user);
+        userService.create(user);
     }
 
     @Get('/email/:email')
     findByEmail(@Path('email') email: string): Promise<User> {
-        return UserService.findByEmail(email);
+        return userService.findByEmail(email);
     }
 
     @Get('/todos')
     findAll(): Promise<User[]> {
-        return UserService.findAll();
+        return userService.findAll();
     }
 
     @Get()
     findBy(@Queries() user: User): Promise<User[]> {
-        return UserService.findBy(user);
+        return userService.findBy(user);
     }
 
     @Delete('/email/:email')
     async deleteBy(@Path("email") email: string): Promise<void> {
-        UserService.deleteBy(email);
+        userService.deleteBy(email);
     }
 
     @Patch('/email/:email')
     async updateBy(@Path("email") email: string, @Body() user: User): Promise<void> {
-        UserService.updateBy(email, user);
+        userService.updateBy(email, user);
     }
 
     @Put('/email/:email')
     async upateAllFieldsBy(@Path("email") email: string, @Body() user: User): Promise<void> {
-        UserService.upateAllFieldsBy(email, user);
+        userService.upateAllFieldsBy(email, user);
     }
 }
 

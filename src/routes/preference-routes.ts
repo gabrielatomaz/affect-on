@@ -2,8 +2,8 @@ import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
 import { Preference } from "../models/models";
-import { PreferenceController } from "../controllers/controllers";
-import { HttpStatusMatcher } from "../utils/utils";
+import { preferenceController } from "../controllers/controllers";
+import { httpStatusMatcher } from "../utils/utils";
 
 class PreferenceRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class PreferenceRoutes {
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const preference: Preference = request.body as Preference;
-        PreferenceController.updateAllFields(id, preference)
+        preferenceController.updateAllFields(id, preference)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
@@ -33,34 +33,34 @@ class PreferenceRoutes {
     async updateRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const preference: Preference = request.body as Preference;
-        PreferenceController.update(id, preference)
+        preferenceController.update(id, preference)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
-        const preferenceFound: Preference = await PreferenceController.findById(id);
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(preferenceFound);
+        const preferenceFound: Preference = await preferenceController.findById(id);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(preferenceFound);
         response.status(responseHttpStatus).json(preferenceFound);
     }
 
     async deleteRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
-        PreferenceController.delete(id)
+        preferenceController.delete(id)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const preferencesFound: Preference[] = await PreferenceController.findAll();
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(preferencesFound);
+        const preferencesFound: Preference[] = await preferenceController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(preferencesFound);
         response.status(responseHttpStatus).json(preferencesFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
         const preference: Preference = request.body as Preference;
-        PreferenceController.create(preference)
+        preferenceController.create(preference)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }

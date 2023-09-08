@@ -2,8 +2,8 @@ import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
 import { Category } from "../models/models";
-import { CategoryController } from "../controllers/controllers";
-import { HttpStatusMatcher } from "../utils/utils";
+import { categoryController } from "../controllers/controllers";
+import { httpStatusMatcher } from "../utils/utils";
 
 class CategoryRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class CategoryRoutes {
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const category: Category = request.body as Category;
-        CategoryController.updateAllFields(id, category)
+        categoryController.updateAllFields(id, category)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
@@ -33,34 +33,34 @@ class CategoryRoutes {
     async updateRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const category: Category = request.body as Category;
-        CategoryController.update(id, category)
+        categoryController.update(id, category)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
-        const categoryFound: Category = await CategoryController.findById(id);
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(categoryFound);
+        const categoryFound: Category = await categoryController.findById(id);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(categoryFound);
         response.status(responseHttpStatus).json(categoryFound);
     }
 
     async deleteRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
-        CategoryController.delete(id)
+        categoryController.delete(id)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const categorysFound: Category[] = await CategoryController.findAll();
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(categorysFound);
+        const categorysFound: Category[] = await categoryController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(categorysFound);
         response.status(responseHttpStatus).json(categorysFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
         const category: Category = request.body as Category;
-        CategoryController.create(category)
+        categoryController.create(category)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }

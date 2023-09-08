@@ -1,25 +1,25 @@
 import { Preference } from "../models/models";
-import { PreferenceRepository } from "../repositories/repositories";
-import { PreferenceMapper } from "../mappers/mappers"
+import { preferenceRepository } from "../repositories/repositories";
+import { preferenceMapper } from "../mappers/mappers"
 
 class PreferenceService {
         async updateAllFields(id: number, preference: Preference): Promise<void> {
-            PreferenceRepository.update(id, preference);
+            preferenceRepository.update(id, preference);
         }
 
         async findAll(): Promise<Preference[]> {
-            const { rows: preferences } = await PreferenceRepository.findAll();
-            return preferences.map(preferece => PreferenceMapper.map(preferece));
+            const { rows: preferences } = await preferenceRepository.findAll();
+            return preferences.map(preferece => preferenceMapper.map(preferece));
         }
 
         async delete(id: number): Promise<void> {
-            PreferenceRepository.delete(id);
+            preferenceRepository.delete(id);
         }
 
         async findById(id: number): Promise<Preference> {
-            const { rows: [preferenceFound] } = await PreferenceRepository.findById(id);
+            const { rows: [preferenceFound] } = await preferenceRepository.findById(id);
 
-            return PreferenceMapper.map(preferenceFound);
+            return preferenceMapper.map(preferenceFound);
         }
 
         async update(id: number, preference: Preference): Promise<void> {
@@ -29,11 +29,11 @@ class PreferenceService {
                 cpf: cpf ? cpf : cpfFound,
                 response: response ? response : responseFound,
             };
-            PreferenceRepository.update(id, preferenceToBeUpdated);
+            preferenceRepository.update(id, preferenceToBeUpdated);
         }
 
         async create(preference: Preference): Promise<void> {
-            PreferenceRepository.create(preference);
+            preferenceRepository.create(preference);
         }
 
     }

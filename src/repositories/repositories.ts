@@ -1,16 +1,18 @@
-import UserRepository from "./user-repository";
-import PreferenceRepository from "./preference-repository";
-import RatingRepository from "./rating-repository"
-import CategoryRepository from "./category-repository"
-import ClientRepository from "./client-repository";
-import HostRepository from "./host-repository";
+import userRepository from "./user-repository";
+import preferenceRepository from "./preference-repository";
+import ratingRepository from "./rating-repository"
+import categoryRepository from "./category-repository"
+import clientRepository from "./client-repository";
+import hostRepository from "./host-repository";
+import comfortRepository from "./comfort-repository";
 
 export {
-    UserRepository,
-    PreferenceRepository,
-    RatingRepository,
-    CategoryRepository,
-    ClientRepository,
-    HostRepository,
+    userRepository,
+    preferenceRepository,
+    ratingRepository,
+    categoryRepository,
+    clientRepository,
+    hostRepository,
+    comfortRepository,
 }
 

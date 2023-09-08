@@ -1,25 +1,25 @@
 import { Rating } from "../models/models";
-import { RatingRepository } from "../repositories/repositories";
-import { RatingMapper } from "../mappers/mappers"
+import { ratingRepository } from "../repositories/repositories";
+import { ratingMapper } from "../mappers/mappers"
 
 class RatingService {
     async updateAllFields(id: number, rating: Rating): Promise<void> {
-        RatingRepository.update(id, rating);
+        ratingRepository.update(id, rating);
     }
 
     async findAll(): Promise<Rating[]> {
-        const { rows: ratings } = await RatingRepository.findAll();
-        return ratings.map(preferece => RatingMapper.map(preferece));
+        const { rows: ratings } = await ratingRepository.findAll();
+        return ratings.map(preferece => ratingMapper.map(preferece));
     }
 
     async delete(id: number): Promise<void> {
-        RatingRepository.delete(id);
+        ratingRepository.delete(id);
     }
 
     async findById(id: number): Promise<Rating> {
-        const { rows: [ratingFound] } = await RatingRepository.findById(id);
+        const { rows: [ratingFound] } = await ratingRepository.findById(id);
 
-        return RatingMapper.map(ratingFound);
+        return ratingMapper.map(ratingFound);
     }
 
     async update(id: number, rating: Rating): Promise<void> {
@@ -37,11 +37,11 @@ class RatingService {
             comment: comment ? comment : commentFound,
         };
 
-        RatingRepository.update(id, ratingToBeUpdated);
+        ratingRepository.update(id, ratingToBeUpdated);
     }
 
     async create(rating: Rating): Promise<void> {
-        RatingRepository.create(rating);
+        ratingRepository.create(rating);
     }
 
 }

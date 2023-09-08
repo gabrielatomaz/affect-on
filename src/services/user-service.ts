@@ -1,37 +1,37 @@
-import { UserRepository } from '../repositories/repositories';
+import { userRepository } from '../repositories/repositories';
 import { User, UserLogin } from '../models/models'
-import { UserMapper } from '../mappers/mappers'
+import { userMapper } from '../mappers/mappers'
 
 class UserService {
     async getUserCredentials(user: UserLogin): Promise<User> {
         const { email, password }: UserLogin = user;
 
-        const { rows: [userFound] } = await UserRepository
+        const { rows: [userFound] } = await userRepository
             .findUserByEmailAndPassword(email, password);
 
-        return UserMapper.map(userFound);
+        return userMapper.map(userFound);
     }
 
     async findAll(): Promise<User[]> {
-        const { rows: users } = await UserRepository.findAll();
+        const { rows: users } = await userRepository.findAll();
 
-        return users.map(user => UserMapper.map(user));
+        return users.map(user => userMapper.map(user));
     }
 
     async findByEmail(email?: string): Promise<User> {
-        const { rows: [userFound] } = await UserRepository.findByEmail(email);
+        const { rows: [userFound] } = await userRepository.findByEmail(email);
 
-        return UserMapper.map(userFound);
+        return userMapper.map(userFound);
     }
 
     async findBy(user: User): Promise<User[]> {
-        const { rows: users } = await UserRepository.findBy(user);
+        const { rows: users } = await userRepository.findBy(user);
 
-        return users.map(user => UserMapper.map(user));
+        return users.map(user => userMapper.map(user));
     }
 
     async upateAllFieldsBy(email: string, user: User): Promise<void> {
-        UserRepository.updateAllFieldsBy(email, user);
+        userRepository.updateAllFieldsBy(email, user);
     }
 
     async updateBy(email: string, user: User): Promise<void> {
@@ -49,15 +49,15 @@ class UserService {
             phone: phone ? phone : phoneFound,
         };
 
-        UserRepository.updateAllFieldsBy(email, userToBeUpdated);
+        userRepository.updateAllFieldsBy(email, userToBeUpdated);
     }
 
     async deleteBy(email: string): Promise<void> {
-        UserRepository.delete(email);
+        userRepository.delete(email);
     }
 
     async create(user: User): Promise<void> {
-        UserRepository.insert(user);
+        userRepository.insert(user);
     }
 }
 

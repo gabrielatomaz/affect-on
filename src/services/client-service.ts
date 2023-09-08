@@ -1,25 +1,25 @@
 import { Client } from "../models/models";
-import { ClientRepository } from "../repositories/repositories";
-import { ClientMapper } from "../mappers/mappers"
+import { clientRepository } from "../repositories/repositories";
+import { clientMapper } from "../mappers/mappers"
 
 class ClientService {
     async updateAllFields(email: string, client: Client): Promise<void> {
-        ClientRepository.update(email, client);
+        clientRepository.update(email, client);
     }
 
     async findAll(): Promise<Client[]> {
-        const { rows: clients } = await ClientRepository.findAll();
-        return clients.map(preferece => ClientMapper.map(preferece));
+        const { rows: clients } = await clientRepository.findAll();
+        return clients.map(preferece => clientMapper.map(preferece));
     }
 
     async delete(email: string): Promise<void> {
-        ClientRepository.delete(email);
+        clientRepository.delete(email);
     }
 
     async findById(email: string): Promise<Client> {
-        const { rows: [clientFound] } = await ClientRepository.findById(email);
+        const { rows: [clientFound] } = await clientRepository.findById(email);
 
-        return ClientMapper.map(clientFound);
+        return clientMapper.map(clientFound);
     }
 
     async update(email: string, client: Client): Promise<void> {
@@ -32,11 +32,11 @@ class ClientService {
             email: emailToUpdate ? emailToUpdate : emailFound,
             cpf: cpf ? cpf : cpfFound,
         };
-        ClientRepository.update(email, clientToBeUpdated);
+        clientRepository.update(email, clientToBeUpdated);
     }
 
     async create(client: Client): Promise<void> {
-        ClientRepository.create(client);
+        clientRepository.create(client);
     }
 
 }

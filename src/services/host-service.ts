@@ -1,25 +1,25 @@
 import { Host } from "../models/models";
-import { HostRepository } from "../repositories/repositories";
-import { HostMapper } from "../mappers/mappers"
+import { hostRepository } from "../repositories/repositories";
+import { hostMapper } from "../mappers/mappers"
 
 class HostService {
     async updateAllFields(email: string, host: Host): Promise<void> {
-        HostRepository.update(email, host);
+        hostRepository.update(email, host);
     }
 
     async findAll(): Promise<Host[]> {
-        const { rows: hosts } = await HostRepository.findAll();
-        return hosts.map(preferece => HostMapper.map(preferece));
+        const { rows: hosts } = await hostRepository.findAll();
+        return hosts.map(preferece => hostMapper.map(preferece));
     }
 
     async delete(email: string): Promise<void> {
-        HostRepository.delete(email);
+        hostRepository.delete(email);
     }
 
     async findById(email: string): Promise<Host> {
-        const { rows: [hostFound] } = await HostRepository.findById(email);
+        const { rows: [hostFound] } = await hostRepository.findById(email);
 
-        return HostMapper.map(hostFound);
+        return hostMapper.map(hostFound);
     }
 
     async update(email: string, host: Host): Promise<void> {
@@ -34,11 +34,11 @@ class HostService {
             cnpj: cnpj ? cnpj : cnpjFound,
             fantasyName: fantasyName ? fantasyName : fantasyNameFoud,
         };
-        HostRepository.update(email, hostToBeUpdated);
+        hostRepository.update(email, hostToBeUpdated);
     }
 
     async create(host: Host): Promise<void> {
-        HostRepository.create(host);
+        hostRepository.create(host);
     }
 
 }

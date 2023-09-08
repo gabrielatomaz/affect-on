@@ -1,16 +1,16 @@
-import UserController from "./user-controller";
-import PreferenceController from "./preference-controller";
-import RatingController from './rating-controller';
-import CategoryController from "./category-controller";
-import ClientController from "./client-controller";
-import HostController from "./host-controller";
+import userController from "./user-controller";
+import preferenceController from "./preference-controller";
+import ratingController from './rating-controller';
+import categoryController from "./category-controller";
+import clientController from "./client-controller";
+import hostController from "./host-controller";
 
 export {
-    UserController,
-    PreferenceController,
-    RatingController,
-    CategoryController,
-    ClientController,
-    HostController,
+    userController,
+    preferenceController,
+    ratingController,
+    categoryController,
+    clientController,
+    hostController,
 }
 

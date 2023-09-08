@@ -2,8 +2,8 @@ import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
 import { Host } from "../models/models";
-import { HostController } from "../controllers/controllers";
-import { HttpStatusMatcher } from "../utils/utils";
+import { hostController } from "../controllers/controllers";
+import { httpStatusMatcher } from "../utils/utils";
 
 class HostRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class HostRoutes {
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const host: Host = request.body as Host;
-        HostController.updateAllFields(email, host)
+        hostController.updateAllFields(email, host)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
@@ -33,34 +33,34 @@ class HostRoutes {
     async updateRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const host: Host = request.body as Host;
-        HostController.update(email, host)
+        hostController.update(email, host)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const hostFound: Host = await HostController.findById(email);
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(hostFound);
+        const hostFound: Host = await hostController.findById(email);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostFound);
         response.status(responseHttpStatus).json(hostFound);
     }
 
     async deleteRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        HostController.delete(email)
+        hostController.delete(email)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const hostsFound: Host[] = await HostController.findAll();
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(hostsFound);
+        const hostsFound: Host[] = await hostController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostsFound);
         response.status(responseHttpStatus).json(hostsFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
         const host: Host = request.body as Host;
-        HostController.create(host)
+        hostController.create(host)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
