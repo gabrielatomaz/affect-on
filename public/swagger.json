@@ -107,6 +107,21 @@
 				},
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Host": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"cnpj": {
+						"type": "string"
+					},
+					"fantasyName": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -1050,6 +1065,173 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Client"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hospedeiro/email/{email}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Hospedeiros"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Host"
+							}
+						}
+					}
+				}
+			},
+			"patch": {
+				"operationId": "UpdateAllFields",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Hospedeiros"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Host"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Host"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Hospedeiros"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Hospedeiros"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/hospedeiro/todos": {
+			"get": {
+				"operationId": "FindAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Host"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Hospedeiros"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/hospedeiro": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Hospedeiros"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Host"
 							}
 						}
 					}

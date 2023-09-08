@@ -3,6 +3,7 @@ import PreferenceController from "./preference-controller";
 import RatingController from './rating-controller';
 import CategoryController from "./category-controller";
 import ClientController from "./client-controller";
+import HostController from "./host-controller";
 
 export {
     UserController,
@@ -10,5 +11,6 @@ export {
     RatingController,
     CategoryController,
     ClientController,
+    HostController,
 }
 

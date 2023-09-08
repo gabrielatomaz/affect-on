@@ -4,6 +4,7 @@ import Preference from './prefence'
 import Rating from './rating-model'
 import Category from './category-model'
 import Client from './client-model'
+import Host from './host-model'
 
 export {
     User,
@@ -12,4 +13,5 @@ export {
     Rating,
     Category,
     Client,
+    Host,
 }

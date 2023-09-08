@@ -1,69 +1,69 @@
 import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
-import { Client } from "../models/models";
-import { ClientController } from "../controllers/controllers";
+import { Host } from "../models/models";
+import { HostController } from "../controllers/controllers";
 import { HttpStatusMatcher } from "../utils/utils";
 
-class ClientRoutes {
+class HostRoutes {
     buildRoutes(): Router {
-        const clientPath = '/cliente';
-        const clientByIdPath = `${clientPath}/email/:email`;
+        const hostPath = '/hospedeiro';
+        const hostByIdPath = `${hostPath}/email/:email`;
 
         const jsonParser = bodyParser.json();
 
-        router.post(clientPath, jsonParser, this.createRoute);
-        router.get(`${clientPath}/todos`, this.findAllRoute);
-        router.get(clientByIdPath, this.findByIdRoute);
-        router.delete(clientByIdPath, this.deleteRoute);
-        router.patch(clientByIdPath, this.updateRoute);
-        router.put(clientByIdPath, this.updateAllFieldsRoute);
+        router.post(hostPath, jsonParser, this.createRoute);
+        router.get(`${hostPath}/todos`, this.findAllRoute);
+        router.get(hostByIdPath, this.findByIdRoute);
+        router.delete(hostByIdPath, this.deleteRoute);
+        router.patch(hostByIdPath, this.updateRoute);
+        router.put(hostByIdPath, this.updateAllFieldsRoute);
 
         return router;
     }
 
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const client: Client = request.body as Client;
-        ClientController.updateAllFields(email, client)
+        const host: Host = request.body as Host;
+        HostController.updateAllFields(email, host)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async updateRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const client: Client = request.body as Client;
-        ClientController.update(email, client)
+        const host: Host = request.body as Host;
+        HostController.update(email, host)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        const clientFound: Client = await ClientController.findById(email);
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(clientFound);
-        response.status(responseHttpStatus).json(clientFound);
+        const hostFound: Host = await HostController.findById(email);
+        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(hostFound);
+        response.status(responseHttpStatus).json(hostFound);
     }
 
     async deleteRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
-        ClientController.delete(email)
+        HostController.delete(email)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const clientsFound: Client[] = await ClientController.findAll();
-        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(clientsFound);
-        response.status(responseHttpStatus).json(clientsFound);
+        const hostsFound: Host[] = await HostController.findAll();
+        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(hostsFound);
+        response.status(responseHttpStatus).json(hostsFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
-        const client: Client = request.body as Client;
-        ClientController.create(client)
+        const host: Host = request.body as Host;
+        HostController.create(host)
             .then(() => response.status(201).send())
             .catch(() => response.status(400).send());
     }
 }
 
-export default new ClientRoutes();
+export default new HostRoutes();

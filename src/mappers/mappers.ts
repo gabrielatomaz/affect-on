@@ -3,6 +3,7 @@ import PreferenceMapper from "./preference-mapper"
 import RatingMapper from "./rating-mapper"
 import CategoryMapper from "./category-mapper"
 import ClientMapper from "./client-mapper"
+import HostMapper from "./host-mapper"
 
 export {
     UserMapper,
@@ -10,4 +11,5 @@ export {
     RatingMapper,
     CategoryMapper,
     ClientMapper,
+    HostMapper,
 }

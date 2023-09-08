@@ -3,6 +3,7 @@ import PreferenceRepository from "./preference-repository";
 import RatingRepository from "./rating-repository"
 import CategoryRepository from "./category-repository"
 import ClientRepository from "./client-repository";
+import HostRepository from "./host-repository";
 
 export {
     UserRepository,
@@ -10,5 +11,6 @@ export {
     RatingRepository,
     CategoryRepository,
     ClientRepository,
+    HostRepository,
 }
 
