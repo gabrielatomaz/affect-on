@@ -4,6 +4,8 @@ import { User } from "../models/models";
 class UserMapper {
 
     map(entityUser: UserEntity): User {
+        if (!entityUser) return {};
+
         const { email, senha, telefone, nome }: UserEntity = entityUser
         const user: User = {
             email,
@@ -11,7 +13,7 @@ class UserMapper {
             phone: telefone,
             name: nome,
         };
-        
+
         return user;
     }
 }

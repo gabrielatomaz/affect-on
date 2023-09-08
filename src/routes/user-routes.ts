@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import router from './router';
 import { Router } from 'express';
 import { User, UserLogin } from '../models/models';
-import HttpStatusMatcher from '../utils/http-status-matcher';
+import { HttpStatusMatcher } from '../utils/utils';
 
 class UserRoutes {
     buildRoutes(): Router {

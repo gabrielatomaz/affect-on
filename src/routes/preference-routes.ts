@@ -1,8 +1,9 @@
 import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
-import Preference from "../models/prefence";
+import { Preference } from "../models/models";
 import { PreferenceController } from "../controllers/controllers";
+import { HttpStatusMatcher } from "../utils/utils";
 
 class PreferenceRoutes {
     buildRoutes(): Router {
@@ -12,42 +13,56 @@ class PreferenceRoutes {
         const jsonParser = bodyParser.json();
 
         router.post(preferencePath, jsonParser, this.createRoute);
-        router.get(preferencePath, this.findAllRoute);
-        router.get(preferencePath, this.findByIdRoute);
+        router.get(`${preferencePath}/todos`, this.findAllRoute);
+        router.get(preferenceByIdPath, this.findByIdRoute);
         router.delete(preferenceByIdPath, this.deleteRoute);
-        router.patch(preferenceByIdPath, this.updateRoute);
-        router.put(preferenceByIdPath, this.updateAllFieldsRoute);
+        router.patch(preferenceByIdPath, this.updateAllFieldsRoute);
+        router.put(preferenceByIdPath, this.updateRoute);
 
         return router;
     }
 
-    updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
-        throw new Error("Method not implemented.");
+    async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {
+        const id: number = parseInt(request.params.id as string);
+        const preference: Preference = request.body as Preference;
+        PreferenceController.updateAllFields(id, preference)
+            .then(() => response.status(201).send())
+            .catch(() => response.status(400).send());
     }
 
-    updateRoute(request: Request, response: Response): Promise<void> {
-        throw new Error("Method not implemented.");
+    async updateRoute(request: Request, response: Response): Promise<void> {
+        const id: number = parseInt(request.params.id as string);
+        const preference: Preference = request.body as Preference;
+        PreferenceController.update(id, preference)
+            .then(() => response.status(201).send())
+            .catch(() => response.status(400).send());
     }
 
-    findByIdRoute(request: Request, response: Response): Promise<void> {
-        throw new Error("Method not implemented.");
+    async findByIdRoute(request: Request, response: Response): Promise<void> {
+        const id: number = parseInt(request.params.id as string);
+        const preferenceFound: Preference = await PreferenceController.findById(id);
+        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(preferenceFound);
+        response.status(responseHttpStatus).json(preferenceFound);
     }
 
-    deleteRoute(request: Request, response: Response): Promise<void> {
-        throw new Error("Method not implemented.");
+    async deleteRoute(request: Request, response: Response): Promise<void> {
+        const id: number = parseInt(request.params.id as string);
+        PreferenceController.delete(id)
+            .then(() => response.status(201).send())
+            .catch(() => response.status(400).send());
     }
 
-    findAllRoute(request: Request, response: Response): Promise<void> {
-        throw new Error("Method not implemented.");
+    async findAllRoute(request: Request, response: Response): Promise<void> {
+        const preferencesFound: Preference[] = await PreferenceController.findAll();
+        const responseHttpStatus = HttpStatusMatcher.isOkOrNotFound(preferencesFound);
+        response.status(responseHttpStatus).json(preferencesFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {
         const preference: Preference = request.body as Preference;
-
-        console.log(preference)
         PreferenceController.create(preference)
             .then(() => response.status(201).send())
-            .catch(() => response.status(400).send())
+            .catch(() => response.status(400).send());
     }
 }
 

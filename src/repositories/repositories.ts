@@ -1,8 +1,8 @@
 import UserRepository from "./user-repository";
-import preferenceRepository from "./preference-repository";
+import PreferenceRepository from "./preference-repository";
 
 export {
     UserRepository,
-    preferenceRepository,
+    PreferenceRepository,
 }
 

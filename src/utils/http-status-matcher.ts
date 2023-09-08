@@ -1,6 +1,6 @@
 class HttpStatusMatcher {
     isOkOrNotFound(object: any) {
-        return !object || object.length == 0
+        return !object || object.length == 0 || Object.keys(object).length === 0
             ? 404
             : 200;
     }
