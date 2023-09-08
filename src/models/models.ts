@@ -9,6 +9,7 @@ import Comfort from './comfort-model'
 import Complaint from './complaint-model'
 import AccessGroup from './access-group-model'
 import AccessGroupPermissionType from './access-group-permission-type-model'
+import History from './history-model'
 
 export {
     User,
@@ -22,4 +23,5 @@ export {
     Complaint,
     AccessGroup,
     AccessGroupPermissionType,
+    History,
 }

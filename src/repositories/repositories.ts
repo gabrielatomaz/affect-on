@@ -8,6 +8,7 @@ import comfortRepository from "./comfort-repository";
 import complaintRepository from "./complaint-repository";
 import accessGroupRepository from "./access-group-repository";
 import accessGroupPermissionTypeRepository from "./access-group-permission-type-repository";
+import historyRepository from "./history-repository";
 
 export {
     userRepository,
@@ -20,5 +21,6 @@ export {
     complaintRepository,
     accessGroupRepository,
     accessGroupPermissionTypeRepository,
+    historyRepository,
 }
 

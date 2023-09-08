@@ -8,6 +8,7 @@ import comfortService from "./comfort-service";
 import complaintService from "./complaint-service";
 import accessGroupService from "./access-group-service";
 import accessGroupPermissionTypeService from "./access-group-permission-type-service";
+import historyService from "./history-service";
 
 export {
     userService,
@@ -20,5 +21,6 @@ export {
     complaintService,
     accessGroupService,
     accessGroupPermissionTypeService,
+    historyService,
 }
 

@@ -6,6 +6,7 @@ import clientRoutes from './client-routes';
 import complaintRoutes from './complaint-routes';
 import accessGroupRoutes from './access-group-routes';
 import accessGroupPermissionTypeRoutes from './access-group-permission-type-routes';
+import historyRoutes from './history-routes';
 
 import { Express } from 'express'
 
@@ -20,6 +21,7 @@ class Routes {
             complaintRoutes,
             accessGroupRoutes,
             accessGroupPermissionTypeRoutes,
+            historyRoutes,
         ];
 
         routes
