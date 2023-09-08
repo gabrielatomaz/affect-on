@@ -3,6 +3,7 @@ import UserLogin from './user-login'
 import Preference from './prefence'
 import Rating from './rating-model'
 import Category from './category-model'
+import Client from './client-model'
 
 export {
     User,
@@ -10,4 +11,5 @@ export {
     Preference,
     Rating,
     Category,
+    Client,
 }

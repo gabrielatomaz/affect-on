@@ -6,13 +6,13 @@ import { CategoryService } from "../services/services";
 @Route("categoria")
 class CategoryController {
     @Put("/id/:id")
-    async update(@Path() id: number, @Body() rategory: Category): Promise<void> {
-        CategoryService.update(id, rategory);
+    async update(@Path() id: number, @Body() category: Category): Promise<void> {
+        CategoryService.update(id, category);
     }
 
     @Patch("/id/:id")
-    async updateAllFields(@Path() id: number, @Body() rategory: Category): Promise<void> {
-        CategoryService.updateAllFields(id, rategory);
+    async updateAllFields(@Path() id: number, @Body() category: Category): Promise<void> {
+        CategoryService.updateAllFields(id, category);
     }
 
     @Get('/id/:id')
@@ -32,8 +32,8 @@ class CategoryController {
     }
 
     @Post()
-    async create(@Body() rategory: Category): Promise<void> {
-        CategoryService.create(rategory);
+    async create(@Body() category: Category): Promise<void> {
+        CategoryService.create(category);
     }
 
 }

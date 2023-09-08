@@ -2,6 +2,7 @@ import UserRoutes from './user-routes'
 import PreferenceRoutes from './preference-routes';
 import RatingRoutes from './rating-routes';
 import CategoryRoutes from './category-routes';
+import ClientRoutes from './client-routes';
 import { Express } from 'express'
 
 class Routes {
@@ -11,6 +12,7 @@ class Routes {
             PreferenceRoutes,
             RatingRoutes,
             CategoryRoutes,
+            ClientRoutes,
         ];
 
         routes
