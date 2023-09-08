@@ -5,6 +5,7 @@ import CategoryEntity from './category-entity'
 import ClientEntity from './client-entity'
 import HostEntity from './host-entity'
 import ComfortEntity from './comfort-entity'
+import ComplaintEntity from './complaint-entity'
 
 export {
     UserEntity,
@@ -14,4 +15,5 @@ export {
     ClientEntity,
     HostEntity,
     ComfortEntity,
+    ComplaintEntity,
 }

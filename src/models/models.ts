@@ -6,6 +6,7 @@ import Category from './category-model'
 import Client from './client-model'
 import Host from './host-model'
 import Comfort from './comfort-model'
+import Complaint from './complaint-model'
 
 export {
     User,
@@ -16,4 +17,5 @@ export {
     Client,
     Host,
     Comfort,
+    Complaint,
 }

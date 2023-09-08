@@ -5,6 +5,7 @@ import categoryController from "./category-controller";
 import clientController from "./client-controller";
 import hostController from "./host-controller";
 import comfortController from "./comfort-controller";
+import complaintController from "./complaint-controller";
 
 export {
     userController,
@@ -14,5 +15,6 @@ export {
     clientController,
     hostController,
     comfortController,
+    complaintController,
 }
 

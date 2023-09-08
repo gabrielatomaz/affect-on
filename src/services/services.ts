@@ -5,6 +5,7 @@ import categoryService from "./category-service";
 import clientService from "./client-service";
 import hostService from "./host-service";
 import comfortService from "./comfort-service";
+import complaintService from "./complaint-service";
 
 export {
     userService,
@@ -14,5 +15,6 @@ export {
     clientService,
     hostService,
     comfortService,
+    complaintService,
 }
 

@@ -5,6 +5,7 @@ import categoryRepository from "./category-repository"
 import clientRepository from "./client-repository";
 import hostRepository from "./host-repository";
 import comfortRepository from "./comfort-repository";
+import complaintRepository from "./complaint-repository";
 
 export {
     userRepository,
@@ -14,5 +15,6 @@ export {
     clientRepository,
     hostRepository,
     comfortRepository,
+    complaintRepository,
 }
 
