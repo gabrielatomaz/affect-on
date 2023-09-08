@@ -175,6 +175,20 @@
 				},
 				"type": "object",
 				"additionalProperties": false
+			},
+			"AccessGroupPermissionType": {
+				"properties": {
+					"idGroup": {
+						"type": "number",
+						"format": "double"
+					},
+					"idPermissionType": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -1765,6 +1779,129 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/AccessGroup"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/grupo-de-acesso-tipo-permissao/id-grupo/{idGrupo}/id-tipo-permissao/{idTipoPermissao}": {
+			"get": {
+				"operationId": "FindByIds",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AccessGroupPermissionType"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Grupo de Acesso - Tipo Permissão"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idGrupo",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "idTipoPermissao",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Grupo de Acesso - Tipo Permissão"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idGrupo",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "idTipoPermissao",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/grupo-de-acesso-tipo-permissao/todos": {
+			"get": {
+				"operationId": "FindAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/AccessGroupPermissionType"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Grupo de Acesso - Tipo Permissão"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/grupo-de-acesso-tipo-permissao": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Grupo de Acesso - Tipo Permissão"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AccessGroupPermissionType"
 							}
 						}
 					}

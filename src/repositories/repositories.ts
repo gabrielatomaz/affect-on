@@ -7,6 +7,7 @@ import hostRepository from "./host-repository";
 import comfortRepository from "./comfort-repository";
 import complaintRepository from "./complaint-repository";
 import accessGroupRepository from "./access-group-repository";
+import accessGroupPermissionTypeRepository from "./access-group-permission-type-repository";
 
 export {
     userRepository,
@@ -18,5 +19,6 @@ export {
     comfortRepository,
     complaintRepository,
     accessGroupRepository,
+    accessGroupPermissionTypeRepository,
 }
 

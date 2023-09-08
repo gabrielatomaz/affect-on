@@ -7,6 +7,7 @@ import hostController from "./host-controller";
 import comfortController from "./comfort-controller";
 import complaintController from "./complaint-controller";
 import accessGroupController from "./access-group-controller";
+import accessGroupPermissionTypeController from "./access-group-permission-type-controller";
 
 export {
     userController,
@@ -18,5 +19,6 @@ export {
     comfortController,
     complaintController,
     accessGroupController,
+    accessGroupPermissionTypeController,
 }
 

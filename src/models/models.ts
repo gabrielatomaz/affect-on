@@ -8,6 +8,7 @@ import Host from './host-model'
 import Comfort from './comfort-model'
 import Complaint from './complaint-model'
 import AccessGroup from './access-group-model'
+import AccessGroupPermissionType from './access-group-permission-type-model'
 
 export {
     User,
@@ -20,4 +21,5 @@ export {
     Comfort,
     Complaint,
     AccessGroup,
+    AccessGroupPermissionType,
 }

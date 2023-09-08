@@ -7,6 +7,7 @@ import hostMapper from "./host-mapper"
 import comfortMapper from "./comfort-mapper"
 import complaintMapper from "./complaint-mapper"
 import accessGroupMapper from "./access-group-mapper"
+import accessGroupPermissionTypeMapper from "./access-group-permission-type-mapper"
 
 export {
     userMapper,
@@ -18,4 +19,5 @@ export {
     comfortMapper,
     complaintMapper,
     accessGroupMapper,
+    accessGroupPermissionTypeMapper,
 }

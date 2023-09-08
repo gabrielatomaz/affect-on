@@ -7,6 +7,7 @@ import HostEntity from './host-entity'
 import ComfortEntity from './comfort-entity'
 import ComplaintEntity from './complaint-entity'
 import AccessGroupEntity from './access-group-entity'
+import AccessGroupPermissionTypeEntity from './acess-group-permission-type-entity'
 
 export {
     UserEntity,
@@ -18,4 +19,5 @@ export {
     ComfortEntity,
     ComplaintEntity,
     AccessGroupEntity,
+    AccessGroupPermissionTypeEntity,
 }
