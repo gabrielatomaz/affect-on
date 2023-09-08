@@ -16,8 +16,8 @@ class PreferenceRoutes {
         router.get(`${preferencePath}/todos`, this.findAllRoute);
         router.get(preferenceByIdPath, this.findByIdRoute);
         router.delete(preferenceByIdPath, this.deleteRoute);
-        router.patch(preferenceByIdPath, this.updateAllFieldsRoute);
-        router.put(preferenceByIdPath, this.updateRoute);
+        router.patch(preferenceByIdPath, this.updateRoute);
+        router.put(preferenceByIdPath, this.updateAllFieldsRoute);
 
         return router;
     }
