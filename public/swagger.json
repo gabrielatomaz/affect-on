@@ -235,6 +235,34 @@
 				},
 				"type": "object",
 				"additionalProperties": false
+			},
+			"HostingCategory": {
+				"properties": {
+					"idHosting": {
+						"type": "number",
+						"format": "double"
+					},
+					"idCategory": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HostingComfort": {
+				"properties": {
+					"idHosting": {
+						"type": "number",
+						"format": "double"
+					},
+					"idComfort": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -2290,6 +2318,256 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Hosting"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/local-de-hospedagem-categoria/id-local-de-hospedagem/{idLocalDeHospedagem}/categoria/{idCategoria}": {
+			"get": {
+				"operationId": "FindByIds",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HostingCategory"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Categorias"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idLocalDeHospedagem",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "idCategoria",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/local-de-hospedagem-categoria/id-grupo/{idLocalDeHospedagem}/categoria/{idCategoria}": {
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Categorias"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idLocalDeHospedagem",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "idCategoria",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/local-de-hospedagem-categoria/todos": {
+			"get": {
+				"operationId": "FindAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/HostingCategory"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Categorias"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/local-de-hospedagem-categoria": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Categorias"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/HostingCategory"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/local-de-hospedagem-comodidade/id-local-de-hospedagem/{idLocalDeHospedagem}/comodidade/{idComodidade}": {
+			"get": {
+				"operationId": "FindByIds",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HostingComfort"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Comodidades"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idLocalDeHospedagem",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "idComodidade",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/local-de-hospedagem-comodidade/id-grupo/{idLocalDeHospedagem}/comodidade/{idComodidade}": {
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Comodidades"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idLocalDeHospedagem",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "path",
+						"name": "idComodidade",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/local-de-hospedagem-comodidade/todos": {
+			"get": {
+				"operationId": "FindAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/HostingComfort"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Comodidades"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/local-de-hospedagem-comodidade": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem - Comodidades"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/HostingComfort"
 							}
 						}
 					}

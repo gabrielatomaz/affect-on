@@ -10,6 +10,8 @@ import AccessGroupEntity from './access-group-entity'
 import AccessGroupPermissionTypeEntity from './acess-group-permission-type-entity'
 import HistoryEntity from './history-entity'
 import HostingEntity from './hosting-entity'
+import HostingCategoryEntity from './hosting-category-entity'
+import HostingComfortEntity from './hosting-comfort-entity'
 
 export {
     UserEntity,
@@ -24,4 +26,6 @@ export {
     AccessGroupPermissionTypeEntity,
     HistoryEntity,
     HostingEntity,
+    HostingCategoryEntity,
+    HostingComfortEntity,
 }

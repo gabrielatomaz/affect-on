@@ -10,6 +10,8 @@ import accessGroupRepository from "./access-group-repository";
 import accessGroupPermissionTypeRepository from "./access-group-permission-type-repository";
 import historyRepository from "./history-repository";
 import hostingRepository from "./hosting-repository";
+import hostingCategoryRepository from "./hosting-category-repository";
+import hostingComfortRepository from "./hosting-comfort-repository";
 
 export {
     userRepository,
@@ -24,5 +26,7 @@ export {
     accessGroupPermissionTypeRepository,
     historyRepository,
     hostingRepository,
+    hostingCategoryRepository,
+    hostingComfortRepository,
 }
 

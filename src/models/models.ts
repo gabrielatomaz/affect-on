@@ -11,6 +11,8 @@ import AccessGroup from './access-group-model'
 import AccessGroupPermissionType from './access-group-permission-type-model'
 import History from './history-model'
 import Hosting from './hosting-model'
+import HostingCategory from './hosting-category-model'
+import HostingComfort from './hosting-comfort-model'
 
 export {
     User,
@@ -26,4 +28,6 @@ export {
     AccessGroupPermissionType,
     History,
     Hosting,
+    HostingCategory,
+    HostingComfort,
 }

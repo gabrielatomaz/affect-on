@@ -10,6 +10,8 @@ import accessGroupMapper from "./access-group-mapper"
 import accessGroupPermissionTypeMapper from "./access-group-permission-type-mapper"
 import historyMapper from "./history-mapper"
 import hostingMapper from "./hosting-mapper"
+import hostingCategoryMapper from "./hosting-category-mapper"
+import hostingComfortMapper from "./hosting-comfort-mapper"
 
 export {
     userMapper,
@@ -24,4 +26,6 @@ export {
     accessGroupPermissionTypeMapper,
     historyMapper,
     hostingMapper,
+    hostingCategoryMapper,
+    hostingComfortMapper,
 }

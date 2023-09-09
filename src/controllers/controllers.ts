@@ -10,6 +10,8 @@ import accessGroupController from "./access-group-controller";
 import accessGroupPermissionTypeController from "./access-group-permission-type-controller";
 import historyController from "./history-controller";
 import hostingController from "./hosting-controller";
+import hostingCategoryController from "./hosting-category-controller";
+import hostingComfortController from "./hosting-comfort-controller";
 
 export {
     userController,
@@ -24,5 +26,7 @@ export {
     accessGroupPermissionTypeController,
     historyController,
     hostingController,
+    hostingCategoryController,
+    hostingComfortController,
 }
 

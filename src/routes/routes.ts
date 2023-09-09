@@ -8,6 +8,8 @@ import accessGroupRoutes from './access-group-routes';
 import accessGroupPermissionTypeRoutes from './access-group-permission-type-routes';
 import historyRoutes from './history-routes';
 import hostingRoutes from './hosting-routes';
+import hostingCategoryRoutes from './hosting-category-routes';
+import hostingComfortRoutes from './hosting-comfort-routes';
 
 import { Express } from 'express'
 
@@ -24,6 +26,8 @@ class Routes {
             accessGroupPermissionTypeRoutes,
             historyRoutes,
             hostingRoutes,
+            hostingCategoryRoutes,
+            hostingComfortRoutes,
         ];
 
         routes
