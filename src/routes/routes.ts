@@ -11,6 +11,7 @@ import historyRoutes from './history-routes';
 import hostingRoutes from './hosting-routes';
 import hostingCategoryRoutes from './hosting-category-routes';
 import hostingComfortRoutes from './hosting-comfort-routes';
+import comfortRoutes from './comfort-routes';
 
 import { Express } from 'express'
 
@@ -19,8 +20,8 @@ class Routes {
         const routes = [
             userRoutes,
             preferenceRoutes,
-            ratingRoutes,
-            categoryRoutes,
+            ratingRoutes, 
+            categoryRoutes, 
             clientRoutes,
             complaintRoutes,
             accessGroupRoutes,
@@ -30,6 +31,7 @@ class Routes {
             hostingRoutes,
             hostingCategoryRoutes,
             hostingComfortRoutes,
+            comfortRoutes,
         ];
 
         routes
