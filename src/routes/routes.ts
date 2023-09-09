@@ -5,6 +5,7 @@ import categoryRoutes from './category-routes';
 import clientRoutes from './client-routes';
 import complaintRoutes from './complaint-routes';
 import accessGroupRoutes from './access-group-routes';
+import permissionTypeRoutes from './permission-type-routes';
 import accessGroupPermissionTypeRoutes from './access-group-permission-type-routes';
 import historyRoutes from './history-routes';
 import hostingRoutes from './hosting-routes';
@@ -23,6 +24,7 @@ class Routes {
             clientRoutes,
             complaintRoutes,
             accessGroupRoutes,
+            permissionTypeRoutes,
             accessGroupPermissionTypeRoutes,
             historyRoutes,
             hostingRoutes,

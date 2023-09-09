@@ -12,6 +12,7 @@ import historyController from "./history-controller";
 import hostingController from "./hosting-controller";
 import hostingCategoryController from "./hosting-category-controller";
 import hostingComfortController from "./hosting-comfort-controller";
+import permissionTypeController from "./permission-type-controller";
 
 export {
     userController,
@@ -28,5 +29,6 @@ export {
     hostingController,
     hostingCategoryController,
     hostingComfortController,
+    permissionTypeController,
 }
 

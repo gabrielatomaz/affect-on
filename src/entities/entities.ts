@@ -12,6 +12,7 @@ import HistoryEntity from './history-entity'
 import HostingEntity from './hosting-entity'
 import HostingCategoryEntity from './hosting-category-entity'
 import HostingComfortEntity from './hosting-comfort-entity'
+import PermissionTypeEntity from './permission-type-entity'
 
 export {
     UserEntity,
@@ -28,4 +29,5 @@ export {
     HostingEntity,
     HostingCategoryEntity,
     HostingComfortEntity,
+    PermissionTypeEntity,
 }

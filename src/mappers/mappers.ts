@@ -12,6 +12,7 @@ import historyMapper from "./history-mapper"
 import hostingMapper from "./hosting-mapper"
 import hostingCategoryMapper from "./hosting-category-mapper"
 import hostingComfortMapper from "./hosting-comfort-mapper"
+import permissionTypeMapper from "./permission-type-mapper"
 
 export {
     userMapper,
@@ -28,4 +29,5 @@ export {
     hostingMapper,
     hostingCategoryMapper,
     hostingComfortMapper,
+    permissionTypeMapper,
 }
