@@ -43,7 +43,7 @@ class ComplaintRepository {
         SET 
             status = $1,
             descricao = $2,
-            id_local_hospedagem = $3
+            id_local_hospedagem = $3,
             cpf = $4
         WHERE 
             id = $5
