@@ -36,7 +36,7 @@ class ComplaintRepository {
     }
 
     update(id: number, complaint: Complaint): Promise<QueryResult> {
-        const { description, idAccomodation, status, cpf }: Complaint = complaint;
+        const { status, description, idAccomodation, cpf }: Complaint = complaint;
         const select = `
         UPDATE
             denuncia
@@ -48,20 +48,20 @@ class ComplaintRepository {
         WHERE 
             id = $5
         `;
-        const values = [description, idAccomodation, status, cpf, id];
+        const values = [status, description, idAccomodation, cpf, id];
 
         return databaseConnection.pool.query(select, values);
     }
 
     create(complaint: Complaint): Promise<QueryResult> {
-        const { description, idAccomodation, status, cpf }: Complaint = complaint;
+        const { status, description, idAccomodation, cpf }: Complaint = complaint;
         const select = `
             INSERT INTO 
                 denuncia(status, descricao, id_local_hospedagem, cpf)
-            VALUES($1, $2, $3);
+            VALUES($1, $2, $3, $4);
         `;
 
-        const values = [description, idAccomodation, status, cpf];
+        const values = [status, description, idAccomodation, cpf];
 
         return databaseConnection.pool.query(select, values);
     }

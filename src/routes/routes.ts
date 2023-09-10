@@ -13,6 +13,7 @@ import hostingCategoryRoutes from './hosting-category-routes';
 import hostingComfortRoutes from './hosting-comfort-routes';
 import comfortRoutes from './comfort-routes';
 import offerRoutes from './offer-routes';
+import hostRoutes from './host-routes';
 
 import { Express } from 'express'
 
@@ -34,6 +35,7 @@ class Routes {
             hostingComfortRoutes,
             comfortRoutes,
             offerRoutes,
+            hostRoutes,
         ];
 
         routes
