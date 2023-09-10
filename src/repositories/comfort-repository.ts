@@ -44,7 +44,7 @@ class ComfortRepository {
             id_preferencia = $1,
             nome = $2
         WHERE 
-            id = $4
+            id = $3
         `;
         const values = [idPreference, name, id];
 
