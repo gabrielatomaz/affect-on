@@ -14,6 +14,7 @@ import HostingCategoryEntity from './hosting-category-entity'
 import HostingComfortEntity from './hosting-comfort-entity'
 import PermissionTypeEntity from './permission-type-entity'
 import OfferEntity from './offer-entity'
+import ReservationEntity from './reservation-entity'
 
 export {
     UserEntity,
@@ -32,4 +33,5 @@ export {
     HostingComfortEntity,
     PermissionTypeEntity,
     OfferEntity,
+    ReservationEntity,
 }

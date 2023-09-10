@@ -14,6 +14,7 @@ import hostingCategoryMapper from "./hosting-category-mapper"
 import hostingComfortMapper from "./hosting-comfort-mapper"
 import permissionTypeMapper from "./permission-type-mapper"
 import offerMapper from "./offer-mapper"
+import reservationMapper from "./reservation-mapper"
 
 export {
     userMapper,
@@ -32,4 +33,5 @@ export {
     hostingComfortMapper,
     permissionTypeMapper,
     offerMapper,
+    reservationMapper,
 }

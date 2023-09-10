@@ -14,6 +14,7 @@ import hostingComfortRoutes from './hosting-comfort-routes';
 import comfortRoutes from './comfort-routes';
 import offerRoutes from './offer-routes';
 import hostRoutes from './host-routes';
+import reservationRoutes from './reservation-routes';
 
 import { Express } from 'express'
 
@@ -21,21 +22,22 @@ class Routes {
     constructor(app: Express) {
         const routes = [
             userRoutes,
-            preferenceRoutes,
-            ratingRoutes, 
-            categoryRoutes, 
+            hostRoutes,
             clientRoutes,
-            complaintRoutes,
+            offerRoutes,
+            reservationRoutes,
             accessGroupRoutes,
             permissionTypeRoutes,
             accessGroupPermissionTypeRoutes,
-            historyRoutes,
+            categoryRoutes, 
+            preferenceRoutes,
+            comfortRoutes,
             hostingRoutes,
             hostingCategoryRoutes,
             hostingComfortRoutes,
-            comfortRoutes,
-            offerRoutes,
-            hostRoutes,
+            complaintRoutes,
+            ratingRoutes, 
+            historyRoutes,
         ];
 
         routes
