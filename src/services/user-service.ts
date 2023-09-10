@@ -40,13 +40,15 @@ class UserService {
             name: nameFound,
             password: passwordFound,
             phone: phoneFound,
+            groupId: groupIdFound,
         }: User = await this.findByEmail(email);
-        const { email: userEmail, name, password, phone } = user;
+        const { email: userEmail, name, password, phone, groupId } = user;
         const userToBeUpdated: User = {
             email: userEmail ? userEmail : emailFound,
             name: name ? name : nameFound,
             password: password ? password : passwordFound,
             phone: phone ? phone : phoneFound,
+            groupId: groupId ? groupId : groupIdFound,
         };
 
         userRepository.updateAllFieldsBy(email, userToBeUpdated);

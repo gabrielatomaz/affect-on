@@ -13,6 +13,7 @@ import hostingService from "./hosting-service";
 import hostingCategoryService from "./hosting-category-service";
 import hostingComfortService from "./hosting-comfort-service";
 import permissionTypeService from "./permission-type-service";
+import offerService from "./offer-service";
 
 export {
     userService,
@@ -30,5 +31,6 @@ export {
     hostingCategoryService,
     hostingComfortService,
     permissionTypeService,
+    offerService,
 }
 

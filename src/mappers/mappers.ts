@@ -13,6 +13,7 @@ import hostingMapper from "./hosting-mapper"
 import hostingCategoryMapper from "./hosting-category-mapper"
 import hostingComfortMapper from "./hosting-comfort-mapper"
 import permissionTypeMapper from "./permission-type-mapper"
+import offerMapper from "./offer-mapper"
 
 export {
     userMapper,
@@ -30,4 +31,5 @@ export {
     hostingCategoryMapper,
     hostingComfortMapper,
     permissionTypeMapper,
+    offerMapper,
 }

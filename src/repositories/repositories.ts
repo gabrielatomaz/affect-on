@@ -13,6 +13,7 @@ import hostingRepository from "./hosting-repository";
 import hostingCategoryRepository from "./hosting-category-repository";
 import hostingComfortRepository from "./hosting-comfort-repository";
 import permissionTypeRepository from "./permission-type-repository";
+import offerRepository from "./offer-repository";
 
 export {
     userRepository,
@@ -30,5 +31,6 @@ export {
     hostingCategoryRepository,
     hostingComfortRepository,
     permissionTypeRepository,
+    offerRepository,
 }
 

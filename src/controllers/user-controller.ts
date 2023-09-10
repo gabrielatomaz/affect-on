@@ -6,7 +6,6 @@ import {
     Body,
     Tags,
     Get,
-    Query,
     Queries,
     Delete,
     Patch,

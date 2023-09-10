@@ -13,6 +13,7 @@ import hostingController from "./hosting-controller";
 import hostingCategoryController from "./hosting-category-controller";
 import hostingComfortController from "./hosting-comfort-controller";
 import permissionTypeController from "./permission-type-controller";
+import offerController from "./offer-controller";
 
 export {
     userController,
@@ -30,5 +31,6 @@ export {
     hostingCategoryController,
     hostingComfortController,
     permissionTypeController,
+    offerController,
 }
 

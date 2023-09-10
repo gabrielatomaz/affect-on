@@ -3,4 +3,5 @@ export default interface UserEntity {
     email?: string,
     senha?: string,
     telefone?: string,
+    id_grupo?: number,
 };

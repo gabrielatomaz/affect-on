@@ -19,6 +19,10 @@
 					},
 					"phone": {
 						"type": "string"
+					},
+					"groupId": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"type": "object",
@@ -276,6 +280,47 @@
 				},
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Offer": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string"
+					},
+					"numberOfAdults": {
+						"type": "number",
+						"format": "double"
+					},
+					"numberOfKids": {
+						"type": "number",
+						"format": "double"
+					},
+					"numberOfRooms": {
+						"type": "number",
+						"format": "double"
+					},
+					"numberOfBeds": {
+						"type": "number",
+						"format": "double"
+					},
+					"area": {
+						"type": "number",
+						"format": "double"
+					},
+					"value": {
+						"type": "number",
+						"format": "double"
+					},
+					"idAccomodation": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -398,6 +443,15 @@
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "groupId",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]
@@ -2719,6 +2773,177 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/PermissionType"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/oferta/id/{id}": {
+			"put": {
+				"operationId": "Update",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Offer"
+							}
+						}
+					}
+				}
+			},
+			"patch": {
+				"operationId": "UpdateAllFields",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Offer"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Offer"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/oferta/todos": {
+			"get": {
+				"operationId": "FindAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Offer"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/oferta": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Offer"
 							}
 						}
 					}

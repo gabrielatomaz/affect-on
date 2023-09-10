@@ -4,13 +4,13 @@ import { User } from '../models/models';
 
 class UserRepository {
     insert(user: User): Promise<QueryResult> {
-        const { email, phone, name, password } = user;
+        const { email, phone, name, password, groupId } = user;
         const select = `
             INSERT INTO 
-                usuario(email, nome, senha, telefone)
-            VALUES($1, $2, $3, $4);
+                usuario(email, nome, senha, telefone, id_grupo)
+            VALUES($1, $2, $3, $4, $5);
         `;
-        const values = [email, name, password, phone];
+        const values = [email, name, password, phone, groupId];
 
         return databaseConnection.pool.query(select, values);
     }
@@ -27,7 +27,7 @@ class UserRepository {
     }
 
     updateAllFieldsBy(email: string, user: User): Promise<QueryResult> {
-        const { email: userEmail, phone, name, password } = user;
+        const { email: userEmail, phone, name, password, groupId } = user;
         const select = `
             UPDATE
                 usuario
@@ -36,10 +36,11 @@ class UserRepository {
                 nome = $2,
                 senha = $3,
                 telefone = $4
+                groupId = $5
             WHERE 
-                email = $5
+                email = $6
         `;
-        const values = [userEmail, name, password, phone, email];
+        const values = [userEmail, name, password, phone, groupId, email];
 
         return databaseConnection.pool.query(select, values);
     }
@@ -82,7 +83,7 @@ class UserRepository {
     }
 
     findBy(user: User): Promise<QueryResult> {
-        const { name, email, password, phone }: User = user;
+        const { name, email, password, phone, groupId }: User = user;
         const select = `
             SELECT
                 * 
@@ -93,10 +94,11 @@ class UserRepository {
                 OR nome = $2 
                 OR senha = $3
                 OR telefone = $4
+                OR grupo_id = $5
             )
         `;
 
-        const values = [email, name, password, phone];
+        const values = [email, name, password, phone, groupId];
 
         return databaseConnection.pool.query(select, values);
     }
