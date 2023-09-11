@@ -2,7 +2,7 @@ import { Body, Get, Post, Route, Tags, Delete, Put, Patch, Path } from "tsoa";
 import  { AccessGroup } from "../models/models";
 import { accessGroupService } from "../services/services";
 
-@Tags("Grupo de Acesso")
+@Tags("Grupo de Acessos")
 @Route("grupo-de-acesso")
 class AccessGroupController {
     @Patch("/id/:id")

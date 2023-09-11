@@ -2,7 +2,7 @@ import { Body, Get, Post, Route, Tags, Delete, Put, Patch, Path } from "tsoa";
 import  { PermissionType } from "../models/models";
 import { permissionTypeService } from "../services/services";
 
-@Tags("Tipo de Permissão")
+@Tags("Tipos de Permissão")
 @Route("tipo-de-permissao")
 class PermissionTypeController {
     @Patch("/id/:id")

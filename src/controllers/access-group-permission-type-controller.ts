@@ -2,7 +2,7 @@ import { Body, Get, Post, Route, Tags, Delete, Put, Patch, Path } from "tsoa";
 import  { AccessGroupPermissionType } from "../models/models";
 import { accessGroupPermissionTypeService } from "../services/services";
 
-@Tags("Grupo de Acesso - Tipo Permissão")
+@Tags("Grupo de Acessos - Tipos de Permissão")
 @Route("grupo-de-acesso-tipo-permissao")
 class AccessGroupPermissionTypeController {
     @Get('/id-grupo/:idGrupo/id-tipo-permissao/:idTipoPermissao')
