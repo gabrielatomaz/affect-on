@@ -3,6 +3,28 @@ import databaseConnection from "../configs/database-connection";
 import { User } from '../models/models';
 
 class UserRepository {
+    findUserPermission(email: string): Promise<QueryResult> {
+        const select = `
+        SELECT 
+            u.nome, 
+            tp.descricao
+        FROM 
+            usuario u
+        INNER JOIN 
+            grupodeacesso ga ON u.id_grupo = ga.id
+        LEFT JOIN 
+            grupodeacesso_tipodepermissao ga_tp ON ga.id = ga_tp.id_grupo
+        LEFT JOIN 
+            tipodepermissao tp ON ga_tp.id_tipo_permissao = tp.id
+        WHERE 
+            u.email = $1
+        ORDER BY 
+            tp.descricao
+        `;
+        const values = [email];
+
+        return databaseConnection.pool.query(select, values);
+    }
     async insert(user: User): Promise<void> {
         const { email, phone, name, password, groupId } = user;
         const select = `

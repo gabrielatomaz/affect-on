@@ -19,6 +19,7 @@ import Reservation from './reservation-model'
 import PreferenceComfortCategory from './preference-comfort-category-model'
 import RatingHosting from './rating-hosting-model'
 import HostingComfortCategory from './hosting-comfort-category-model'
+import UserPermission from './user-access-group-model'
 
 export {
     User,
@@ -42,4 +43,5 @@ export {
     PreferenceComfortCategory,
     RatingHosting,
     HostingComfortCategory,
+    UserPermission,
 }

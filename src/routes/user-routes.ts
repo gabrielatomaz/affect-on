@@ -3,7 +3,7 @@ import { Response, Request } from 'express';
 import bodyParser from 'body-parser';
 import router from './router';
 import { Router } from 'express';
-import { User, UserLogin } from '../models/models';
+import { User, UserLogin, UserPermission } from '../models/models';
 import { httpStatusMatcher } from '../utils/utils';
 
 class UserRoutes {
@@ -13,17 +13,28 @@ class UserRoutes {
         const jsonParser = bodyParser.json();
 
         const userByEmailPath = `${userPath}/email/:email`;
+        const userAccessGroupByEmail = `${userByEmailPath}/permissao`
 
         router.post(`${userPath}/login`, jsonParser, this.loginRoute);
         router.post(`${userPath}`, jsonParser, this.createRoute);
         router.get(`${userPath}/todos`, this.findAllRoute);
         router.get(userByEmailPath, this.findByEmailRoute);
         router.get(`${userPath}`, this.findByRoute);
+        router.get(userAccessGroupByEmail, this.findUserPermissionRoute)
         router.delete(userByEmailPath, this.deleteRoute);
         router.patch(userByEmailPath, this.updateRoute);
         router.put(userByEmailPath, this.updateAllFieldsRoute);
 
         return router;
+    }
+
+    private async findUserPermissionRoute(request: Request, response: Response): Promise<void> {
+        const email: string = request.params.email as string;
+        const userPermissionsFound: UserPermission[] = await userController
+            .findUserPermission(email);
+
+        const responseStatus = httpStatusMatcher.isOkOrNotFound(userPermissionsFound);
+        response.status(responseStatus).json(userPermissionsFound);
     }
 
     private async loginRoute(request: Request, response: Response): Promise<void> {

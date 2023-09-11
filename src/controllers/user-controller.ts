@@ -1,5 +1,5 @@
 import { userService } from '../services/services';
-import { User, UserLogin } from '../models/models';
+import { User, UserLogin, UserPermission } from '../models/models';
 import {
     Post,
     Route,
@@ -16,6 +16,10 @@ import {
 @Route('usuario')
 @Tags('Usuários')
 class UserController {
+    @Get('/email/:email/permissao')
+    findUserPermission(@Path('email') email: string): Promise<UserPermission[]> {
+        return userService.findUserPermission(email);
+    }
     @Post('/login')
     login(@Body() user: UserLogin): Promise<User> {
         return userService.getUserCredentials(user);

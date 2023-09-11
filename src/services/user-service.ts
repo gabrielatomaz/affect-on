@@ -1,8 +1,15 @@
 import { userRepository } from '../repositories/repositories';
-import { User, UserLogin } from '../models/models'
-import { userMapper } from '../mappers/mappers'
+import { User, UserLogin, UserPermission } from '../models/models'
+import { userMapper, userPermissionMapper } from '../mappers/mappers'
 
 class UserService {
+    async findUserPermission(email: string): Promise<UserPermission[]> {
+        const { rows: userPermissions } = await userRepository
+            .findUserPermission(email);
+
+        return userPermissions.map(userPermission => userPermissionMapper.map(userPermission));
+    }
+
     async getUserCredentials(user: UserLogin): Promise<User> {
         const { email, password }: UserLogin = user;
 
