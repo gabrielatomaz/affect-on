@@ -16,10 +16,10 @@ class ReservationRoutes {
         router.post(reservationPath, jsonParser, this.createRoute);
         router.get(`${reservationPath}/todos`, this.findAllRoute);
         router.get(reservationByIdPath, this.findByIdRoute);
+        router.get(reservationByUserEmailPath, this.findReservationsByUserEmailRoute)
         router.delete(reservationByIdPath, this.deleteRoute);
         router.patch(reservationByIdPath, this.updateRoute);
         router.put(reservationByIdPath, this.updateAllFieldsRoute);
-        router.get(reservationByUserEmailPath, this.findReservationsByUserEmailRoute)
 
         return router;
     }

@@ -9,17 +9,27 @@ class ComplaintRoutes {
     buildRoutes(): Router {
         const complaintPath = '/denuncia';
         const complaintByIdPath = `${complaintPath}/id/:id`;
+        const complaintByClientCPF = `${complaintPath}/cliente/:cpf`;
 
         const jsonParser = bodyParser.json();
 
         router.post(complaintPath, jsonParser, this.createRoute);
         router.get(`${complaintPath}/todos`, this.findAllRoute);
         router.get(complaintByIdPath, this.findByIdRoute);
+        router.get(complaintByClientCPF, this.findComplaintsByClientCPFRoute);
         router.delete(complaintByIdPath, this.deleteRoute);
         router.patch(complaintByIdPath, this.updateRoute);
         router.put(complaintByIdPath, this.updateAllFieldsRoute);
 
         return router;
+    }
+
+    async findComplaintsByClientCPFRoute(request: Request, response: Response): Promise<void> {
+        const cpf: string = request.params.cpf as string;
+        const complaintsFound: Complaint[] = await complaintController
+            .findComplaintsByClientCPF(cpf);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(complaintsFound);
+        response.status(responseHttpStatus).json(complaintsFound);
     }
 
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {

@@ -3,6 +3,28 @@ import { Hosting } from "../models/models";
 import databaseConnection from "../configs/database-connection";
 
 class HostingRepository {
+    findHostingsComfortCategoryRoute(): Promise<QueryResult> {
+        const select = `
+        SELECT 
+            lh.*,
+   	        co.nome AS nome_comodidade,
+            ca.nome AS nome_categoria,
+            ca.palavrachave AS palavra_chave_categoria
+        FROM 
+            localdehospedagem lh
+        LEFT JOIN 
+            localdehospedagem_comodidade lhc ON lh.id = lhc.id_local_hospedagem
+        LEFT JOIN 
+            comodidade co ON lhc.id_comodidade = co.id
+        LEFT JOIN 
+            localdehospedagem_categoria lca ON lh.id = lca.id_local_hospedagem
+        LEFT JOIN 
+            categoria ca ON lca.id_categoria = ca.id
+        `;
+
+        return databaseConnection.pool.query(select);
+    }
+
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 

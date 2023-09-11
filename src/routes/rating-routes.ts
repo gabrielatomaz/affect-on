@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
-import { Rating } from "../models/models";
+import { Rating, RatingHosting } from "../models/models";
 import { ratingController } from "../controllers/controllers";
 import { httpStatusMatcher } from "../utils/utils";
 
@@ -9,17 +9,27 @@ class RatingRoutes {
     buildRoutes(): Router {
         const ratingPath = '/avaliacao';
         const ratingByIdPath = `${ratingPath}/id/:id`;
+        const ratingByClientCPFPath = `${ratingPath}/cliente/:cpf`;
 
         const jsonParser = bodyParser.json();
 
         router.post(ratingPath, jsonParser, this.createRoute);
         router.get(`${ratingPath}/todos`, this.findAllRoute);
         router.get(ratingByIdPath, this.findByIdRoute);
+        router.get(ratingByClientCPFPath, this.findRatingsByClientCPFRoute);
         router.delete(ratingByIdPath, this.deleteRoute);
         router.patch(ratingByIdPath, this.updateRoute);
         router.put(ratingByIdPath, this.updateAllFieldsRoute);
 
         return router;
+    }
+
+    async findRatingsByClientCPFRoute(request: Request, response: Response): Promise<void> {
+        const cpf: string = request.params.cpf as string;
+        const ratingsFound: RatingHosting[] = await ratingController
+            .findRatingsByClientCPF(cpf);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(ratingsFound);
+        response.status(responseHttpStatus).json(ratingsFound);
     }
 
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {

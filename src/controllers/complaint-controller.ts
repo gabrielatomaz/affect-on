@@ -5,6 +5,10 @@ import { complaintService } from "../services/services";
 @Tags("Denuncias")
 @Route("denuncia")
 class ComplaintController {
+    @Get('/cliente/:cpf')
+    async findComplaintsByClientCPF(cpf: string): Promise<Complaint[]> {
+        return complaintService.findComplaintsByClientCPF(cpf);
+    }
     @Put("/id/:id")
     async update(@Path() id: number, @Body() complaint: Complaint): Promise<void> {
         complaintService.update(id, complaint);

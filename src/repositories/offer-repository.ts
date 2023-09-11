@@ -3,6 +3,26 @@ import { Offer } from "../models/models";
 import databaseConnection from "../configs/database-connection";
 
 class OfferRepository {
+    findOffersByHostEmailRoute(email: string): Promise<QueryResult> {
+        const select = `
+        SELECT 
+            o.*
+        FROM 
+            oferta o
+        INNER JOIN 
+            localdehospedagem lh ON o.id_local_hospedagem = lh.id
+        INNER JOIN 
+            hospedeiro h ON lh.cnpj = h.cnpj
+        INNER JOIN 
+            usuario u ON h.email = u.email
+        WHERE 
+            u.email = $1
+        `;
+        const values = [email];
+
+        return databaseConnection.pool.query(select, values);
+    }
+
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 

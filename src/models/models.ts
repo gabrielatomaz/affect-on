@@ -16,6 +16,9 @@ import HostingComfort from './hosting-comfort-model'
 import PermissionType from './permission-type-model'
 import Offer from './offer-model'
 import Reservation from './reservation-model'
+import PreferenceComfortCategory from './preference-comfort-category-model'
+import RatingHosting from './rating-hosting-model'
+import HostingComfortCategory from './hosting-comfort-category-model'
 
 export {
     User,
@@ -36,4 +39,7 @@ export {
     PermissionType,
     Offer,
     Reservation,
+    PreferenceComfortCategory,
+    RatingHosting,
+    HostingComfortCategory,
 }

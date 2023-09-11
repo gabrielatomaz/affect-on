@@ -3,6 +3,12 @@ import { complaintRepository } from "../repositories/repositories";
 import { complaintMapper } from "../mappers/mappers"
 
 class ComplaintService {
+    async findComplaintsByClientCPF(cpf: string): Promise<Complaint[]> {
+        const { rows: complaints } = await complaintRepository
+            .findComplaintsByClientCPF(cpf);
+        return complaints.map(complaint => complaintMapper.map(complaint));
+    }
+
     async updateAllFields(id: number, complaint: Complaint): Promise<void> {
         complaintRepository.update(id, complaint);
     }

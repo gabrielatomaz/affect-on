@@ -1,10 +1,14 @@
 import { Body, Get, Post, Route, Tags, Delete, Put, Patch, Path } from "tsoa";
-import  { Rating } from "../models/models";
+import  { Rating, RatingHosting } from "../models/models";
 import { ratingService } from "../services/services";
 
 @Tags("Avaliações")
 @Route("avaliacao")
 class RatingController {
+    @Get("cliente/:cpf")
+    findRatingsByClientCPF(cpf: string): Promise<RatingHosting[]> {
+        return ratingService.findRatingsByClientCPF(cpf);
+    }
     @Put("/id/:id")
     async update(@Path() id: number, @Body() rating: Rating): Promise<void> {
         ratingService.update(id, rating);

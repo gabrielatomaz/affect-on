@@ -3,6 +3,26 @@ import { Preference } from "../models/models";
 import databaseConnection from "../configs/database-connection";
 
 class PreferenceRepository {
+    findPreferencesByClientCPF(cpf: string): Promise<QueryResult> {
+        const select = `
+        SELECT 
+            p.*, 
+            c.nome AS nome_categoria, 
+            c.palavraChave AS palavra_chave_categoria, 
+            co.nome AS nome_comodidade
+        FROM 
+            preferencia p
+        LEFT JOIN 
+            categoria c ON p.id = c.id_preferencia
+        LEFT JOIN 
+            comodidade co ON p.id = co.id_preferencia
+        WHERE 
+            p.cpf = $1
+        `;
+        const values = [cpf];
+
+        return databaseConnection.pool.query(select, values);
+    }
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 

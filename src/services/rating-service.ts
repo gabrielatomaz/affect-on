@@ -1,8 +1,13 @@
-import { Rating } from "../models/models";
+import { Rating, RatingHosting } from "../models/models";
 import { ratingRepository } from "../repositories/repositories";
-import { ratingMapper } from "../mappers/mappers"
+import { ratingMapper, ratingHostingMapper } from "../mappers/mappers"
 
 class RatingService {
+    async findRatingsByClientCPF(cpf: string): Promise<RatingHosting[]> {
+        const { rows: ratings } = await ratingRepository
+            .findRatingsByClientCPF(cpf);
+        return ratings.map(rating => ratingHostingMapper.map(rating));
+    }
     async updateAllFields(id: number, rating: Rating): Promise<void> {
         ratingRepository.update(id, rating);
     }

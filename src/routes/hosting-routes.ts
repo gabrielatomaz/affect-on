@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import { Request, Response, Router } from "express"
 import router from './router';
-import { Hosting } from "../models/models";
+import { Hosting, HostingComfortCategory } from "../models/models";
 import { hostingController } from "../controllers/controllers";
 import { httpStatusMatcher } from "../utils/utils";
 
@@ -9,17 +9,26 @@ class HostingRoutes {
     buildRoutes(): Router {
         const hostingPath = '/local-de-hospedagem';
         const hostingByIdPath = `${hostingPath}/id/:id`;
+        const hostingComfortsCategoriesPath = `${hostingPath}/comodidade/categoria`;
 
         const jsonParser = bodyParser.json();
 
         router.post(hostingPath, jsonParser, this.createRoute);
         router.get(`${hostingPath}/todos`, this.findAllRoute);
         router.get(hostingByIdPath, this.findByIdRoute);
+        router.get(hostingComfortsCategoriesPath, this.findHostingsComfortCategoryRoute);
         router.delete(hostingByIdPath, this.deleteRoute);
         router.patch(hostingByIdPath, this.updateRoute);
         router.put(hostingByIdPath, this.updateAllFieldsRoute);
 
         return router;
+    }
+
+    async findHostingsComfortCategoryRoute(request: Request, response: Response): Promise<void> {
+        const hostingsComfortCategoryFound: HostingComfortCategory[] = await hostingController
+            .findHostingsComfortCategoryRoute();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingsComfortCategoryFound);
+        response.status(responseHttpStatus).json(hostingsComfortCategoryFound);
     }
 
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {

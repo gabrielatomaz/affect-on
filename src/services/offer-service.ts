@@ -3,6 +3,10 @@ import { offerRepository } from "../repositories/repositories";
 import { offerMapper } from "../mappers/mappers"
 
 class OfferService {
+    async findOffersByHostEmailRoute(email: string): Promise<Offer[]> {
+        const { rows: offers } = await offerRepository.findOffersByHostEmailRoute(email);
+        return offers.map(offer => offerMapper.map(offer));
+    }
     async updateAllFields(id: number, offer: Offer): Promise<void> {
         offerRepository.update(id, offer);
     }

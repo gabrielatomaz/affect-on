@@ -1,10 +1,14 @@
 import { Body, Get, Post, Route, Tags, Delete, Put, Patch, Path } from "tsoa";
-import  { Hosting } from "../models/models";
+import  { Hosting, HostingComfortCategory } from "../models/models";
 import { hostingService } from "../services/services";
 
 @Tags("Locais de Hospedagem")
 @Route("local-de-hospedagem")
 class HostingController {
+    @Get("/comodidade/categoria")
+    findHostingsComfortCategoryRoute(): Promise<HostingComfortCategory[]> {
+        return hostingService.findHostingsComfortCategoryRoute();
+    }
     @Put("/id/:id")
     async update(@Path() id: number, @Body() hosting: Hosting): Promise<void> {
         hostingService.update(id, hosting);

@@ -1,10 +1,14 @@
 import { Body, Get, Post, Route, Tags, Delete, Put, Patch, Path } from "tsoa";
-import  { Preference } from "../models/models";
+import  { Preference, PreferenceComfortCategory } from "../models/models";
 import { preferenceService } from "../services/services";
 
 @Tags("Preferências")
 @Route("preferencia")
 class PreferenceController {
+    @Get('/cliente/:cpf')
+    async findPreferencesByClientCPF(cpf: string): Promise<PreferenceComfortCategory[]> {
+        return preferenceService.findPreferencesByClientCPF(cpf);
+    }
     @Put("/id/:id")
     async update(@Path() id: number, @Body() preference: Preference): Promise<void> {
         preferenceService.update(id, preference);

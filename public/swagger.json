@@ -40,6 +40,31 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"PreferenceComfortCategory": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"cpf": {
+						"type": "string"
+					},
+					"response": {
+						"type": "string"
+					},
+					"categoryName": {
+						"type": "string"
+					},
+					"categoryKeyWord": {
+						"type": "string"
+					},
+					"comfortName": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Preference": {
 				"properties": {
 					"id": {
@@ -50,6 +75,33 @@
 						"type": "string"
 					},
 					"response": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RatingHosting": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"score": {
+						"type": "number",
+						"format": "double"
+					},
+					"idAccommodation": {
+						"type": "number",
+						"format": "double"
+					},
+					"cpf": {
+						"type": "string"
+					},
+					"comment": {
+						"type": "string"
+					},
+					"hostingName": {
 						"type": "string"
 					}
 				},
@@ -210,6 +262,40 @@
 					"idBooking": {
 						"type": "number",
 						"format": "double"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HostingComfortCategory": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"hostType": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"cnpj": {
+						"type": "string"
+					},
+					"comfortName": {
+						"type": "string"
+					},
+					"categoryName": {
+						"type": "string"
+					},
+					"categoryKeyWord": {
+						"type": "string"
 					}
 				},
 				"type": "object",
@@ -624,6 +710,40 @@
 				"parameters": []
 			}
 		},
+		"/preferencia/cliente/{cpf}": {
+			"get": {
+				"operationId": "FindPreferencesByClientCPF",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/PreferenceComfortCategory"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Preferências"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cpf",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/preferencia/id/{id}": {
 			"put": {
 				"operationId": "Update",
@@ -793,6 +913,40 @@
 						}
 					}
 				}
+			}
+		},
+		"/avaliacao/cliente/{cpf}": {
+			"get": {
+				"operationId": "FindRatingsByClientCPF",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/RatingHosting"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Avaliações"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cpf",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/avaliacao/id/{id}": {
@@ -1642,6 +1796,40 @@
 				}
 			}
 		},
+		"/denuncia/cliente/{cpf}": {
+			"get": {
+				"operationId": "FindComplaintsByClientCPF",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Complaint"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Denuncias"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cpf",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/denuncia/id/{id}": {
 			"put": {
 				"operationId": "Update",
@@ -1822,7 +2010,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso"
+					"Grupo de Acessos"
 				],
 				"security": [],
 				"parameters": [
@@ -1862,7 +2050,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso"
+					"Grupo de Acessos"
 				],
 				"security": [],
 				"parameters": [
@@ -1885,7 +2073,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso"
+					"Grupo de Acessos"
 				],
 				"security": [],
 				"parameters": [
@@ -1920,7 +2108,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso"
+					"Grupo de Acessos"
 				],
 				"security": [],
 				"parameters": []
@@ -1935,7 +2123,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso"
+					"Grupo de Acessos"
 				],
 				"security": [],
 				"parameters": [],
@@ -1967,7 +2155,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso - Tipo Permissão"
+					"Grupo de Acessos - Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [
@@ -1999,7 +2187,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso - Tipo Permissão"
+					"Grupo de Acessos - Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [
@@ -2043,7 +2231,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso - Tipo Permissão"
+					"Grupo de Acessos - Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": []
@@ -2058,7 +2246,7 @@
 					}
 				},
 				"tags": [
-					"Grupo de Acesso - Tipo Permissão"
+					"Grupo de Acessos - Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [],
@@ -2243,6 +2431,31 @@
 						}
 					}
 				}
+			}
+		},
+		"/local-de-hospedagem/comodidade/categoria": {
+			"get": {
+				"operationId": "FindHostingsComfortCategoryRoute",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/HostingComfortCategory"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locais de Hospedagem"
+				],
+				"security": [],
+				"parameters": []
 			}
 		},
 		"/local-de-hospedagem/id/{id}": {
@@ -2675,7 +2888,7 @@
 					}
 				},
 				"tags": [
-					"Tipo de Permissão"
+					"Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [
@@ -2715,7 +2928,7 @@
 					}
 				},
 				"tags": [
-					"Tipo de Permissão"
+					"Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [
@@ -2738,7 +2951,7 @@
 					}
 				},
 				"tags": [
-					"Tipo de Permissão"
+					"Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [
@@ -2773,7 +2986,7 @@
 					}
 				},
 				"tags": [
-					"Tipo de Permissão"
+					"Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": []
@@ -2788,7 +3001,7 @@
 					}
 				},
 				"tags": [
-					"Tipo de Permissão"
+					"Tipos de Permissão"
 				],
 				"security": [],
 				"parameters": [],
@@ -2802,6 +3015,40 @@
 						}
 					}
 				}
+			}
+		},
+		"/oferta/hospedeiro/{email}": {
+			"get": {
+				"operationId": "FindOffersByHostEmailRoute",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Offer"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Ofertas"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/oferta/id/{id}": {
@@ -2973,6 +3220,40 @@
 						}
 					}
 				}
+			}
+		},
+		"/reserva/usuario/{email}": {
+			"get": {
+				"operationId": "FindReservationsByUserEmail",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Reservation"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Reservas"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/reserva/id/{id}": {

@@ -3,6 +3,23 @@ import { Rating } from "../models/models";
 import databaseConnection from "../configs/database-connection";
 
 class RatingRepository {
+    findRatingsByClientCPF(cpf: string): Promise<QueryResult> {
+        const select = `
+        SELECT 
+            a.*, 
+            lh.nome AS nome_local_hospedagem
+        FROM 
+            avaliacao a
+        INNER JOIN 
+            localdehospedagem lh ON a.id_local_hospedagem = lh.id
+        WHERE 
+            a.cpf = $1;
+        `;
+        const values = [cpf];
+
+        return databaseConnection.pool.query(select, values);
+    }
+
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 

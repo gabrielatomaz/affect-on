@@ -4,9 +4,23 @@ import databaseConnection from "../configs/database-connection";
 
 class ReservationRepository {
     findReservationsByUserEmail(email: string): PromiseLike<QueryResult> {
-        throw new Error("Method not implemented.");
+        const select = `
+        SELECT 
+            r.*
+        FROM 
+            reserva r
+        INNER JOIN 
+            cliente c ON r.cpf = c.cpf
+        INNER JOIN 
+            usuario u ON c.email = u.email
+        WHERE 
+            u.email = $1
+        `;
+        const values = [email];
+
+        return databaseConnection.pool.query(select, values);
     }
-    
+
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 
@@ -58,7 +72,7 @@ class ReservationRepository {
     }
 
     create(reservation: Reservation): Promise<QueryResult> {
-        const {  cpf, idOffer, beginDate, endDate }: Reservation = reservation;
+        const { cpf, idOffer, beginDate, endDate }: Reservation = reservation;
         const select = `
             INSERT INTO 
                 reserva(cpf, id_oferta, data_inicio, data_fim)

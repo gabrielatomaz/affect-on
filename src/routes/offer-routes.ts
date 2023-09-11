@@ -9,17 +9,25 @@ class OfferRoutes {
     buildRoutes(): Router {
         const offerPath = '/oferta';
         const offerByIdPath = `${offerPath}/id/:id`;
+        const offerByHostEmail = `${offerPath}/hospedeiro/:email`;
 
         const jsonParser = bodyParser.json();
 
         router.post(offerPath, jsonParser, this.createRoute);
         router.get(`${offerPath}/todos`, this.findAllRoute);
         router.get(offerByIdPath, this.findByIdRoute);
+        router.get(offerByHostEmail, this.findOffersByHostEmailRoute)
         router.delete(offerByIdPath, this.deleteRoute);
         router.patch(offerByIdPath, this.updateRoute);
         router.put(offerByIdPath, this.updateAllFieldsRoute);
 
         return router;
+    }
+    async findOffersByHostEmailRoute(request: Request, response: Response): Promise<void> {
+        const email: string = request.params.email as string;
+        const offersFound: Offer[] = await offerController.findOffersByHostEmailRoute(email);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(offersFound);
+        response.status(responseHttpStatus).json(offersFound);
     }
 
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {

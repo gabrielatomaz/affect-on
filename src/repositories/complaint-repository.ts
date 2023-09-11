@@ -3,6 +3,18 @@ import { Complaint } from "../models/models";
 import databaseConnection from "../configs/database-connection";
 
 class ComplaintRepository {
+    findComplaintsByClientCPF(cpf: string): Promise<QueryResult> {
+        const select = `
+        SELECT 
+            * 
+        FROM 
+            denuncia
+        WHERE
+            cpf = $1`;
+        const values = [cpf];
+
+        return databaseConnection.pool.query(select, values);
+    }
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 

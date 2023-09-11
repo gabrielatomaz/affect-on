@@ -1,8 +1,14 @@
-import { Hosting } from "../models/models";
+import { Hosting, HostingComfortCategory } from "../models/models";
 import { hostingRepository } from "../repositories/repositories";
-import { hostingMapper } from "../mappers/mappers"
+import { hostingMapper, hostingComfortCategoryMapper } from "../mappers/mappers"
 
 class HostingService {
+    async findHostingsComfortCategoryRoute(): Promise<HostingComfortCategory[]> {
+        const { rows: hostingsComfortCategory } = await hostingRepository
+            .findHostingsComfortCategoryRoute();
+        return hostingsComfortCategory.map(hostingComfortCategory => hostingComfortCategoryMapper.map(hostingComfortCategory));
+    }
+
     async updateAllFields(id: number, hosting: Hosting): Promise<void> {
         hostingRepository.update(id, hosting);
     }

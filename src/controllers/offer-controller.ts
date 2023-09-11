@@ -5,6 +5,10 @@ import { offerService } from "../services/services";
 @Tags("Ofertas")
 @Route("oferta")
 class OfferController {
+    @Get('hospedeiro/:email')
+    async findOffersByHostEmailRoute(email: string): Promise<Offer[]> {
+        return offerService.findOffersByHostEmailRoute(email);
+    }
     @Put("/id/:id")
     async update(@Path() id: number, @Body() offer: Offer): Promise<void> {
         offerService.update(id, offer);
