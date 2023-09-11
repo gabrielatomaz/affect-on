@@ -35,7 +35,7 @@ class HostRepository {
         return databaseConnection.pool.query(select);
     }
 
-    update(email: string, host: Host): Promise<QueryResult> {
+    async update(email: string, host: Host): Promise<void> {
         const { email: emailToBeUpdated, cnpj, fantasyName }: Host = host;
         const select = `
         UPDATE
@@ -49,10 +49,10 @@ class HostRepository {
         `;
         const values = [emailToBeUpdated, cnpj, fantasyName, email];
 
-        return databaseConnection.pool.query(select, values);
+        return databaseConnection.pool.query(select, values, (error, result) => { });
     }
 
-    create(host: Host): Promise<QueryResult> {
+    async create(host: Host): Promise<void> {
         const { email, cnpj, fantasyName }: Host = host;
         const select = `
             INSERT INTO 
@@ -62,7 +62,7 @@ class HostRepository {
 
         const values = [email, cnpj, fantasyName];
 
-        return databaseConnection.pool.query(select, values);
+        databaseConnection.pool.query(select, values, (error, result) => { });
     }
 
 }

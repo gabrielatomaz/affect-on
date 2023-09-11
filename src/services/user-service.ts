@@ -31,7 +31,7 @@ class UserService {
     }
 
     async upateAllFieldsBy(email: string, user: User): Promise<void> {
-        userRepository.updateAllFieldsBy(email, user);
+        userRepository.update(email, user);
     }
 
     async updateBy(email: string, user: User): Promise<void> {
@@ -51,15 +51,15 @@ class UserService {
             groupId: groupId ? groupId : groupIdFound,
         };
 
-        userRepository.updateAllFieldsBy(email, userToBeUpdated);
+        userRepository.update(email, userToBeUpdated);
     }
 
     async deleteBy(email: string): Promise<void> {
         userRepository.delete(email);
     }
 
-    async create(user: User): Promise<void> {
-        userRepository.insert(user);
+    create(user: User): Promise<any> {
+        return userRepository.insert(user);
     }
 }
 

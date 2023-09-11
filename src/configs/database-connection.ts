@@ -10,6 +10,7 @@ class DatabaseConnection {
         port: parseInt(process.env.DB_PORT || "5432"),
         ssl: true,
     });
+
 }
 
 

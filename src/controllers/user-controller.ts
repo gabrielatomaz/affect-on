@@ -22,8 +22,8 @@ class UserController {
     }
 
     @Post()
-    async create(@Body() user: User): Promise<void> {
-        userService.create(user);
+    create(@Body() user: User): Promise<any> {
+        return userService.create(user);
     }
 
     @Get('/email/:email')

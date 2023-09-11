@@ -35,7 +35,7 @@ class ClientRepository {
         return databaseConnection.pool.query(select);
     }
 
-    update(email: string, client: Client): Promise<QueryResult> {
+    async update(email: string, client: Client): Promise<void> {
         const { email: emailToBeUpdated, cpf }: Client = client;
         const select = `
         UPDATE
@@ -48,10 +48,10 @@ class ClientRepository {
         `;
         const values = [emailToBeUpdated, cpf, email];
 
-        return databaseConnection.pool.query(select, values);
+        databaseConnection.pool.query(select, values, (error, result) => { });
     }
 
-    create(client: Client): Promise<QueryResult> {
+    async create(client: Client): Promise<void> {
         const { email, cpf }: Client = client;
         const select = `
             INSERT INTO 
@@ -61,7 +61,7 @@ class ClientRepository {
 
         const values = [email, cpf];
 
-        return databaseConnection.pool.query(select, values);
+        databaseConnection.pool.query(select, values, (error, result) => { });
     }
 
 }
