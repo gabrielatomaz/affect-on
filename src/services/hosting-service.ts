@@ -9,7 +9,7 @@ class HostingService {
 
     async findAll(): Promise<Hosting[]> {
         const { rows: hostings } = await hostingRepository.findAll();
-        return hostings.map(preferece => hostingMapper.map(preferece));
+        return hostings.map(hosting => hostingMapper.map(hosting));
     }
 
     async delete(id: number): Promise<void> {

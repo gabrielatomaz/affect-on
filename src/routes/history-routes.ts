@@ -53,9 +53,9 @@ class HistoryRoutes {
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const historysFound: History[] = await historyController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(historysFound);
-        response.status(responseHttpStatus).json(historysFound);
+        const historiesFound: History[] = await historyController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(historiesFound);
+        response.status(responseHttpStatus).json(historiesFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {

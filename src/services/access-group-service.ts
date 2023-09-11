@@ -9,7 +9,7 @@ class AccessGroupService {
 
     async findAll(): Promise<AccessGroup[]> {
         const { rows: accessGroups } = await accessGroupRepository.findAll();
-        return accessGroups.map(preferece => accessGroupMapper.map(preferece));
+        return accessGroups.map(accessGroup => accessGroupMapper.map(accessGroup));
     }
 
     async delete(id: number): Promise<void> {

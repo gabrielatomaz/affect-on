@@ -5,7 +5,7 @@ import { hostingComfortMapper } from "../mappers/mappers"
 class HostingComfortService {
     async findAll(): Promise<HostingComfort[]> {
         const { rows: hostingComforts } = await hostingComfortRepository.findAll();
-        return hostingComforts.map(preferece => hostingComfortMapper.map(preferece));
+        return hostingComforts.map(hostingComfort => hostingComfortMapper.map(hostingComfort));
     }
 
     async delete(idHosting: number, idComfort: number): Promise<void> {

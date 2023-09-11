@@ -5,7 +5,7 @@ import { accessGroupPermissionTypeMapper } from "../mappers/mappers"
 class AccessGroupPermissionTypeService {
     async findAll(): Promise<AccessGroupPermissionType[]> {
         const { rows: accessGroupPermissionTypes } = await accessGroupPermissionTypeRepository.findAll();
-        return accessGroupPermissionTypes.map(preferece => accessGroupPermissionTypeMapper.map(preferece));
+        return accessGroupPermissionTypes.map(accessGroupPermissionType => accessGroupPermissionTypeMapper.map(accessGroupPermissionType));
     }
 
     async delete(idGroup: number, idPermissionType: number): Promise<void> {

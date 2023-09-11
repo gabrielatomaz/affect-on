@@ -9,7 +9,7 @@ class PermissionTypeService {
 
     async findAll(): Promise<PermissionType[]> {
         const { rows: permissionTypes } = await permissionTypeRepository.findAll();
-        return permissionTypes.map(preferece => permissionTypeMapper.map(preferece));
+        return permissionTypes.map(permissionType => permissionTypeMapper.map(permissionType));
     }
 
     async delete(id: number): Promise<void> {

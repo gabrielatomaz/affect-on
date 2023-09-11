@@ -3,13 +3,21 @@ import { reservationRepository } from "../repositories/repositories";
 import { reservationMapper } from "../mappers/mappers"
 
 class ReservationService {
+
+    async findReservationsByUserEmail(email: string): Promise<Reservation[]> {
+        const { rows: reservations } = await reservationRepository
+            .findReservationsByUserEmail(email);
+        return reservations
+            .map(reservation => reservationMapper.map(reservation));
+    }
+
     async updateAllFields(id: number, reservation: Reservation): Promise<void> {
         reservationRepository.update(id, reservation);
     }
 
     async findAll(): Promise<Reservation[]> {
         const { rows: reservations } = await reservationRepository.findAll();
-        return reservations.map(preferece => reservationMapper.map(preferece));
+        return reservations.map(reservation => reservationMapper.map(reservation));
     }
 
     async delete(id: number): Promise<void> {

@@ -4,8 +4,8 @@ import { hostingCategoryMapper } from "../mappers/mappers"
 
 class HostingCategoryService {
     async findAll(): Promise<HostingCategory[]> {
-        const { rows: hostingCategorys } = await hostingCategoryRepository.findAll();
-        return hostingCategorys.map(preferece => hostingCategoryMapper.map(preferece));
+        const { rows: hostingCategories } = await hostingCategoryRepository.findAll();
+        return hostingCategories.map(hostingCategory => hostingCategoryMapper.map(hostingCategory));
     }
 
     async delete(idHosting: number, idCategory: number): Promise<void> {

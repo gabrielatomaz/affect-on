@@ -53,9 +53,9 @@ class CategoryRoutes {
     }
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
-        const categorysFound: Category[] = await categoryController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(categorysFound);
-        response.status(responseHttpStatus).json(categorysFound);
+        const categoriesFound: Category[] = await categoryController.findAll();
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(categoriesFound);
+        response.status(responseHttpStatus).json(categoriesFound);
     }
 
     async createRoute(request: Request, response: Response): Promise<void> {

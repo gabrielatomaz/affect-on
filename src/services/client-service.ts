@@ -9,7 +9,7 @@ class ClientService {
 
     async findAll(): Promise<Client[]> {
         const { rows: clients } = await clientRepository.findAll();
-        return clients.map(preferece => clientMapper.map(preferece));
+        return clients.map(client => clientMapper.map(client));
     }
 
     async delete(email: string): Promise<void> {

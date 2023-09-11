@@ -9,7 +9,7 @@ class ComplaintService {
 
     async findAll(): Promise<Complaint[]> {
         const { rows: complaints } = await complaintRepository.findAll();
-        return complaints.map(preferece => complaintMapper.map(preferece));
+        return complaints.map(complaint => complaintMapper.map(complaint));
     }
 
     async delete(id: number): Promise<void> {

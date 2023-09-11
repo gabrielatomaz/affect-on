@@ -9,7 +9,7 @@ class OfferService {
 
     async findAll(): Promise<Offer[]> {
         const { rows: offers } = await offerRepository.findAll();
-        return offers.map(preferece => offerMapper.map(preferece));
+        return offers.map(offer => offerMapper.map(offer));
     }
 
     async delete(id: number): Promise<void> {

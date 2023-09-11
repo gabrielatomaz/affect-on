@@ -8,8 +8,8 @@ class HistoryService {
     }
 
     async findAll(): Promise<History[]> {
-        const { rows: historys } = await historyRepository.findAll();
-        return historys.map(preferece => historyMapper.map(preferece));
+        const { rows: histories } = await historyRepository.findAll();
+        return histories.map(history => historyMapper.map(history));
     }
 
     async delete(id: number): Promise<void> {

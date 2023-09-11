@@ -9,7 +9,7 @@ class ComfortService {
 
     async findAll(): Promise<Comfort[]> {
         const { rows: comforts } = await comfortRepository.findAll();
-        return comforts.map(preferece => comfortMapper.map(preferece));
+        return comforts.map(comfort => comfortMapper.map(comfort));
     }
 
     async delete(id: number): Promise<void> {

@@ -9,6 +9,7 @@ class ReservationRoutes {
     buildRoutes(): Router {
         const reservationPath = '/reserva';
         const reservationByIdPath = `${reservationPath}/id/:id`;
+        const reservationByUserEmailPath = `${reservationPath}/usuario/:email`;
 
         const jsonParser = bodyParser.json();
 
@@ -18,8 +19,17 @@ class ReservationRoutes {
         router.delete(reservationByIdPath, this.deleteRoute);
         router.patch(reservationByIdPath, this.updateRoute);
         router.put(reservationByIdPath, this.updateAllFieldsRoute);
+        router.get(reservationByUserEmailPath, this.findReservationsByUserEmailRoute)
 
         return router;
+    }
+
+    async findReservationsByUserEmailRoute(request: Request, response: Response): Promise<void> {
+        const email: string = request.params.email as string;
+        const reservationsFound: Reservation[] = await reservationController
+            .findReservationsByUserEmail(email);
+        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(reservationsFound);
+        response.status(responseHttpStatus).json(reservationsFound);
     }
 
     async updateAllFieldsRoute(request: Request, response: Response): Promise<void> {

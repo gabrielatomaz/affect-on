@@ -8,8 +8,8 @@ class CategoryService {
     }
 
     async findAll(): Promise<Category[]> {
-        const { rows: categorys } = await categoryRepository.findAll();
-        return categorys.map(preferece => categoryMapper.map(preferece));
+        const { rows: categories } = await categoryRepository.findAll();
+        return categories.map(category => categoryMapper.map(category));
     }
 
     async delete(id: number): Promise<void> {

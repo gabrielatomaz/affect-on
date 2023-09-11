@@ -9,7 +9,7 @@ class PreferenceService {
 
         async findAll(): Promise<Preference[]> {
             const { rows: preferences } = await preferenceRepository.findAll();
-            return preferences.map(preferece => preferenceMapper.map(preferece));
+            return preferences.map(preference => preferenceMapper.map(preference));
         }
 
         async delete(id: number): Promise<void> {

@@ -3,6 +3,10 @@ import { Reservation } from "../models/models";
 import databaseConnection from "../configs/database-connection";
 
 class ReservationRepository {
+    findReservationsByUserEmail(email: string): PromiseLike<QueryResult> {
+        throw new Error("Method not implemented.");
+    }
+    
     findById(id: number): Promise<QueryResult> {
         const select = `
         SELECT 

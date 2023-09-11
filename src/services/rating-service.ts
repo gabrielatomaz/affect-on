@@ -9,7 +9,7 @@ class RatingService {
 
     async findAll(): Promise<Rating[]> {
         const { rows: ratings } = await ratingRepository.findAll();
-        return ratings.map(preferece => ratingMapper.map(preferece));
+        return ratings.map(rating => ratingMapper.map(rating));
     }
 
     async delete(id: number): Promise<void> {
