@@ -1,4 +1,4 @@
-## Trabalho Final - Projeto de Banco de Dados
+### Trabalho Final: Projeto de Banco de Dados :computer: - AffectOn
 
 ### :rocket: Guia de execução
 
@@ -41,7 +41,3 @@ Por fim, para rodar a aplicação execute
 ```
 $ npm run dev
 ```
-
-### :computer: Projeto - AffectOn
-
--- descrever aqui os métodos e endpoints
