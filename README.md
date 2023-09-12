@@ -1,5 +1,7 @@
 ### Trabalho Final: Projeto de Banco de Dados :computer: - AffectOn
 
+API para o aplicativo mobile AffectOn que é destinado a pessoas que buscam por lugares de hospedagem com teor romântico, sossegado ou despojado dentro de um determinado raio de distância.
+
 ### :rocket: Guia de execução
 
 Para executar esse projeto, é necessário que você tenha o node instalado na sua máquina.
