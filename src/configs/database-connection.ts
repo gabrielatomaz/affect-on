@@ -1,7 +1,6 @@
 import { Pool } from "pg";
 
 class DatabaseConnection {
-
     pool = new Pool({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -10,8 +9,6 @@ class DatabaseConnection {
         port: parseInt(process.env.DB_PORT || "5432"),
         ssl: true,
     });
-
 }
-
 
 export default new DatabaseConnection();
