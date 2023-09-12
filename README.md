@@ -36,6 +36,12 @@ Agora precisamos instalar as dependências do projeto, utilize
 $ npm install
 ```
 
+Por fim, para rodar a aplicação execute
+
+```
+$ npm run dev
+```
+
 ### :computer: Projeto - AffectOn
 
 -- descrever aqui os métodos e endpoints
