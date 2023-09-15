@@ -1,4 +1,4 @@
-class HttpStatusMatcher {
+class HttpStatusMatcherUtils {
     isOkOrNotFound(object: any) {
         return !object || object.length == 0 || Object.keys(object).length === 0
             ? 404
@@ -6,4 +6,4 @@ class HttpStatusMatcher {
     }
 }
 
-export default new HttpStatusMatcher();
+export default new HttpStatusMatcherUtils();

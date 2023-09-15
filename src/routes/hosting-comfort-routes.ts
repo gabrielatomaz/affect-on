@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { HostingComfort } from "../models/models";
 import { hostingComfortController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class HostingComfortRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class HostingComfortRoutes {
         const idPermissionType: number = parseInt(request.params.idComodidade as string);
         const hostingComfortFound: HostingComfort =
             await hostingComfortController.findByIds(idGroup, idPermissionType);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingComfortFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingComfortFound);
         response.status(responseHttpStatus).json(hostingComfortFound);
     }
 
@@ -40,7 +40,7 @@ class HostingComfortRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const hostingComfortsFound: HostingComfort[] = await hostingComfortController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingComfortsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingComfortsFound);
         response.status(responseHttpStatus).json(hostingComfortsFound);
     }
 

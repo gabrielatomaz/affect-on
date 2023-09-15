@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Comfort } from "../models/models";
 import { comfortController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class ComfortRoutes {
     buildRoutes(): Router {
@@ -41,7 +41,7 @@ class ComfortRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const comfortFound: Comfort = await comfortController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(comfortFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(comfortFound);
         response.status(responseHttpStatus).json(comfortFound);
     }
 
@@ -54,7 +54,7 @@ class ComfortRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const comfortsFound: Comfort[] = await comfortController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(comfortsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(comfortsFound);
         response.status(responseHttpStatus).json(comfortsFound);
     }
 

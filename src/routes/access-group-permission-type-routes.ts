@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { AccessGroupPermissionType } from "../models/models";
 import { accessGroupPermissionTypeController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class AccessGroupPermissionTypeRoutes {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class AccessGroupPermissionTypeRoutes {
         const idPermissionType: number = parseInt(request.params.idTipoPermissao as string);
         const accessGroupPermissionTypeFound: AccessGroupPermissionType =
             await accessGroupPermissionTypeController.findByIds(idGroup, idPermissionType);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(accessGroupPermissionTypeFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(accessGroupPermissionTypeFound);
         response.status(responseHttpStatus).json(accessGroupPermissionTypeFound);
     }
 
@@ -40,7 +40,7 @@ class AccessGroupPermissionTypeRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const accessGroupPermissionTypesFound: AccessGroupPermissionType[] = await accessGroupPermissionTypeController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(accessGroupPermissionTypesFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(accessGroupPermissionTypesFound);
         response.status(responseHttpStatus).json(accessGroupPermissionTypesFound);
     }
 

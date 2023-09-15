@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { HostingCategory } from "../models/models";
 import { hostingCategoryController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class HostingCategoryController {
     buildRoutes(): Router {
@@ -25,7 +25,7 @@ class HostingCategoryController {
         const idPermissionType: number = parseInt(request.params.idCategoria as string);
         const hostingCategoryFound: HostingCategory =
             await hostingCategoryController.findByIds(idGroup, idPermissionType);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingCategoryFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingCategoryFound);
         response.status(responseHttpStatus).json(hostingCategoryFound);
     }
 
@@ -40,7 +40,7 @@ class HostingCategoryController {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const hostingCategorysFound: HostingCategory[] = await hostingCategoryController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingCategorysFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingCategorysFound);
         response.status(responseHttpStatus).json(hostingCategorysFound);
     }
 

@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Rating, RatingHosting } from "../models/models";
 import { ratingController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class RatingRoutes {
     buildRoutes(): Router {
@@ -28,7 +28,7 @@ class RatingRoutes {
         const cpf: string = request.params.cpf as string;
         const ratingsFound: RatingHosting[] = await ratingController
             .findRatingsByClientCPF(cpf);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(ratingsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(ratingsFound);
         response.status(responseHttpStatus).json(ratingsFound);
     }
 
@@ -51,7 +51,7 @@ class RatingRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const ratingFound: Rating = await ratingController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(ratingFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(ratingFound);
         response.status(responseHttpStatus).json(ratingFound);
     }
 
@@ -64,7 +64,7 @@ class RatingRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const ratingsFound: Rating[] = await ratingController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(ratingsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(ratingsFound);
         response.status(responseHttpStatus).json(ratingsFound);
     }
 

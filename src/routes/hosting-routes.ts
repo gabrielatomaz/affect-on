@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Hosting, HostingComfortCategory } from "../models/models";
 import { hostingController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class HostingRoutes {
     buildRoutes(): Router {
@@ -27,7 +27,7 @@ class HostingRoutes {
     async findHostingsComfortCategoryRoute(request: Request, response: Response): Promise<void> {
         const hostingsComfortCategoryFound: HostingComfortCategory[] = await hostingController
             .findHostingsComfortCategoryRoute();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingsComfortCategoryFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingsComfortCategoryFound);
         response.status(responseHttpStatus).json(hostingsComfortCategoryFound);
     }
 
@@ -50,7 +50,7 @@ class HostingRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const hostingFound: Hosting = await hostingController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingFound);
         response.status(responseHttpStatus).json(hostingFound);
     }
 
@@ -63,7 +63,7 @@ class HostingRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const hostingsFound: Hosting[] = await hostingController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(hostingsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(hostingsFound);
         response.status(responseHttpStatus).json(hostingsFound);
     }
 

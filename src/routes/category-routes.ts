@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Category } from "../models/models";
 import { categoryController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class CategoryRoutes {
     buildRoutes(): Router {
@@ -41,7 +41,7 @@ class CategoryRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const categoryFound: Category = await categoryController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(categoryFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(categoryFound);
         response.status(responseHttpStatus).json(categoryFound);
     }
 
@@ -54,7 +54,7 @@ class CategoryRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const categoriesFound: Category[] = await categoryController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(categoriesFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(categoriesFound);
         response.status(responseHttpStatus).json(categoriesFound);
     }
 

@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Complaint } from "../models/models";
 import { complaintController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class ComplaintRoutes {
     buildRoutes(): Router {
@@ -28,7 +28,7 @@ class ComplaintRoutes {
         const cpf: string = request.params.cpf as string;
         const complaintsFound: Complaint[] = await complaintController
             .findComplaintsByClientCPF(cpf);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(complaintsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(complaintsFound);
         response.status(responseHttpStatus).json(complaintsFound);
     }
 
@@ -51,7 +51,7 @@ class ComplaintRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const complaintFound: Complaint = await complaintController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(complaintFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(complaintFound);
         response.status(responseHttpStatus).json(complaintFound);
     }
 
@@ -64,7 +64,7 @@ class ComplaintRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const complaintsFound: Complaint[] = await complaintController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(complaintsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(complaintsFound);
         response.status(responseHttpStatus).json(complaintsFound);
     }
 

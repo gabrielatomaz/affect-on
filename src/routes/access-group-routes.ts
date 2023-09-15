@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { AccessGroup } from "../models/models";
 import { accessGroupController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class AccessGroupRoutes {
     buildRoutes(): Router {
@@ -32,7 +32,7 @@ class AccessGroupRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const accessGroupFound: AccessGroup = await accessGroupController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(accessGroupFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(accessGroupFound);
         response.status(responseHttpStatus).json(accessGroupFound);
     }
 
@@ -45,7 +45,7 @@ class AccessGroupRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const accessGroupsFound: AccessGroup[] = await accessGroupController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(accessGroupsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(accessGroupsFound);
         response.status(responseHttpStatus).json(accessGroupsFound);
     }
 

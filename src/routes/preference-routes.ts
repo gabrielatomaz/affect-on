@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Preference, PreferenceComfortCategory } from "../models/models";
 import { preferenceController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class PreferenceRoutes {
     buildRoutes(): Router {
@@ -28,7 +28,7 @@ class PreferenceRoutes {
         const cpf: string = request.params.cpf;
         const preferencesFound: PreferenceComfortCategory[] = await preferenceController
             .findPreferencesByClientCPF(cpf);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(preferencesFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(preferencesFound);
         response.status(responseHttpStatus).json(preferencesFound);
     }
 
@@ -51,7 +51,7 @@ class PreferenceRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const preferenceFound: Preference = await preferenceController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(preferenceFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(preferenceFound);
         response.status(responseHttpStatus).json(preferenceFound);
     }
 
@@ -64,7 +64,7 @@ class PreferenceRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const preferencesFound: Preference[] = await preferenceController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(preferencesFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(preferencesFound);
         response.status(responseHttpStatus).json(preferencesFound);
     }
 

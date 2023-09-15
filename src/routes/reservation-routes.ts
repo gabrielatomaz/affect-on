@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Reservation } from "../models/models";
 import { reservationController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class ReservationRoutes {
     buildRoutes(): Router {
@@ -28,7 +28,7 @@ class ReservationRoutes {
         const email: string = request.params.email as string;
         const reservationsFound: Reservation[] = await reservationController
             .findReservationsByUserEmail(email);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(reservationsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(reservationsFound);
         response.status(responseHttpStatus).json(reservationsFound);
     }
 
@@ -51,7 +51,7 @@ class ReservationRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const reservationFound: Reservation = await reservationController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(reservationFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(reservationFound);
         response.status(responseHttpStatus).json(reservationFound);
     }
 
@@ -64,7 +64,7 @@ class ReservationRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const reservationsFound: Reservation[] = await reservationController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(reservationsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(reservationsFound);
         response.status(responseHttpStatus).json(reservationsFound);
     }
 

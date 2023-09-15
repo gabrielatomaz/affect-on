@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import router from './router';
 import { Router } from 'express';
 import { User, UserLogin, UserPermission } from '../models/models';
-import { httpStatusMatcher } from '../utils/utils';
+import { httpStatusMatcherUtils } from '../utils/utils';
 
 class UserRoutes {
     buildRoutes(): Router {
@@ -33,7 +33,7 @@ class UserRoutes {
         const userPermissionsFound: UserPermission[] = await userController
             .findUserPermission(email);
 
-        const responseStatus = httpStatusMatcher.isOkOrNotFound(userPermissionsFound);
+        const responseStatus = httpStatusMatcherUtils.isOkOrNotFound(userPermissionsFound);
         response.status(responseStatus).json(userPermissionsFound);
     }
 
@@ -41,14 +41,14 @@ class UserRoutes {
         const user: UserLogin = request.body as User;
         const loggedUser: User = await userController.login(user);
 
-        const responseStatus = httpStatusMatcher.isOkOrNotFound(loggedUser);
+        const responseStatus = httpStatusMatcherUtils.isOkOrNotFound(loggedUser);
         response.status(responseStatus).json(loggedUser);
     }
 
     private async findAllRoute(request: Request, response: Response): Promise<void> {
         const usersFound: User[] = await userController.findAll();
 
-        const responseStatus = httpStatusMatcher.isOkOrNotFound(usersFound);
+        const responseStatus = httpStatusMatcherUtils.isOkOrNotFound(usersFound);
         response.status(responseStatus).json(usersFound);
     }
 
@@ -56,7 +56,7 @@ class UserRoutes {
         const email: string = request.params.email as string;
         const userFound: User = await userController.findByEmail(email);
 
-        const responseStatus = httpStatusMatcher.isOkOrNotFound(userFound);
+        const responseStatus = httpStatusMatcherUtils.isOkOrNotFound(userFound);
         response.status(responseStatus).json(userFound);
     }
 
@@ -64,7 +64,7 @@ class UserRoutes {
         const user: User = request.query as User;
         const usersFound: User[] = await userController.findBy(user);
 
-        const responseStatus = httpStatusMatcher.isOkOrNotFound(usersFound);
+        const responseStatus = httpStatusMatcherUtils.isOkOrNotFound(usersFound);
         response.status(responseStatus).json(usersFound);
     }
 

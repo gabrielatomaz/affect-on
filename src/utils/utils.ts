@@ -1,5 +1,5 @@
-import httpStatusMatcher from "./http-status-matcher";
+import httpStatusMatcherUtils from "./http-status-matcher-utils";
 
 export {
-    httpStatusMatcher,
+    httpStatusMatcherUtils,
 }

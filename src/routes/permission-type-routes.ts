@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { PermissionType } from "../models/models";
 import { permissionTypeController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class PermissionTypeRoutes {
     buildRoutes(): Router {
@@ -32,7 +32,7 @@ class PermissionTypeRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const permissionTypeFound: PermissionType = await permissionTypeController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(permissionTypeFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(permissionTypeFound);
         response.status(responseHttpStatus).json(permissionTypeFound);
     }
 
@@ -45,7 +45,7 @@ class PermissionTypeRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const permissionTypesFound: PermissionType[] = await permissionTypeController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(permissionTypesFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(permissionTypesFound);
         response.status(responseHttpStatus).json(permissionTypesFound);
     }
 

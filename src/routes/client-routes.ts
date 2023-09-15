@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Client } from "../models/models";
 import { clientController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class ClientRoutes {
     buildRoutes(): Router {
@@ -41,7 +41,7 @@ class ClientRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const clientFound: Client = await clientController.findById(email);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(clientFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(clientFound);
         response.status(responseHttpStatus).json(clientFound);
     }
 
@@ -54,7 +54,7 @@ class ClientRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const clientsFound: Client[] = await clientController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(clientsFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(clientsFound);
         response.status(responseHttpStatus).json(clientsFound);
     }
 

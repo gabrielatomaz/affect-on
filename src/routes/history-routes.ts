@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { History } from "../models/models";
 import { historyController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class HistoryRoutes {
     buildRoutes(): Router {
@@ -41,7 +41,7 @@ class HistoryRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const historyFound: History = await historyController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(historyFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(historyFound);
         response.status(responseHttpStatus).json(historyFound);
     }
 
@@ -54,7 +54,7 @@ class HistoryRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const historiesFound: History[] = await historyController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(historiesFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(historiesFound);
         response.status(responseHttpStatus).json(historiesFound);
     }
 

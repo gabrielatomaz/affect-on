@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import router from './router';
 import { Offer } from "../models/models";
 import { offerController } from "../controllers/controllers";
-import { httpStatusMatcher } from "../utils/utils";
+import { httpStatusMatcherUtils } from "../utils/utils";
 
 class OfferRoutes {
     buildRoutes(): Router {
@@ -26,7 +26,7 @@ class OfferRoutes {
     async findOffersByHostEmailRoute(request: Request, response: Response): Promise<void> {
         const email: string = request.params.email as string;
         const offersFound: Offer[] = await offerController.findOffersByHostEmailRoute(email);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(offersFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(offersFound);
         response.status(responseHttpStatus).json(offersFound);
     }
 
@@ -49,7 +49,7 @@ class OfferRoutes {
     async findByIdRoute(request: Request, response: Response): Promise<void> {
         const id: number = parseInt(request.params.id as string);
         const offerFound: Offer = await offerController.findById(id);
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(offerFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(offerFound);
         response.status(responseHttpStatus).json(offerFound);
     }
 
@@ -62,7 +62,7 @@ class OfferRoutes {
 
     async findAllRoute(request: Request, response: Response): Promise<void> {
         const offersFound: Offer[] = await offerController.findAll();
-        const responseHttpStatus = httpStatusMatcher.isOkOrNotFound(offersFound);
+        const responseHttpStatus = httpStatusMatcherUtils.isOkOrNotFound(offersFound);
         response.status(responseHttpStatus).json(offersFound);
     }
 
